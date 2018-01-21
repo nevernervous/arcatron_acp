@@ -11,10 +11,11 @@ class CreateDeviceStatusesTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('device_statues', function (Blueprint $table) {
-           $table->integer('id');
+        Schema::create('device_statuses', function (Blueprint $table) {
+           $table->increments('id');
            $table->string('device_ip');
            $table->string('company_name');
            $table->string('department_name');
@@ -33,6 +34,6 @@ class CreateDeviceStatusesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('device_statuses');
     }
 }
