@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DeviceStatus;
 use Carbon\Carbon;
-
+use Log;
 class DeviceStatusAPIController extends Controller
 {
     public function postDeviceStatus(Request $request) {
         $data = $request->json()->all();
-        $deviceStatuses = explode(';', $data['status']);
+        $decryptedStatus = shell_exec("echo ".$data['status']."| openssl enc -aes-128-cbc -a -d -pass pass:". env('SECRET_KEY'));
+        $decryptedStatus = str_replace("\n", "", $decryptedStatus);
+        $deviceStatuses = explode(';', $decryptedStatus);
 
         foreach($deviceStatuses as $value) {
             if(!$value)
