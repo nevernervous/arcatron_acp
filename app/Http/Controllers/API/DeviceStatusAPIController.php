@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DeviceStatus;
 use Carbon\Carbon;
-use Log;
+use App\Models\Customer;
+
 class DeviceStatusAPIController extends Controller
 {
     public function postDeviceStatus(Request $request) {
@@ -19,12 +20,20 @@ class DeviceStatusAPIController extends Controller
             if(!$value)
                 continue;
             $status = explode('_', $value);
+            $customer = Customer::where('name', $status[1])->first();
+
+            if($customer == null) {
+                $customer = new Customer();
+                $customer->name = $status[1];
+                $customer->save();
+            }
+
             $deviceStatus = new DeviceStatus();
             $deviceStatus->device_ip = $status[0];
-            $deviceStatus->company_name = $status[1];
+            $deviceStatus->customer_id = $customer->id;
             $deviceStatus->department_name = $status[2];
             $deviceStatus->device_name = $status[3];
-            $deviceStatus->date = Carbon::createFromFormat('M/d/Y H:i:s', $status[4]);
+            $deviceStatus->date = Carbon::createFromFormat('m/d/Y H:i:s', $status[4]);
             $deviceStatus->critical_level = substr($status[5], 3);
             $deviceStatus->alarm_state = substr($status[6], 3);
             $deviceStatus->save();
