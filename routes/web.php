@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('showLive');
 });
+
+Auth::routes();
+
+Route::get('/live', [
+    'as'   => 'showLive',
+    'uses' => 'LiveController@showLive'
+]);
