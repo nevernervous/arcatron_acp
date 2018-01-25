@@ -55,6 +55,9 @@ class GenerateAdmin extends Command
             $user->name = $name;
             $user->email = $email;
             $user->password = Hash::make($password);
+            $user->live_access = true;
+            $user->search_access = true;
+            $user->logs_access = true;
             $user->save();
 
             $adminRole = Role::where('name', 'admin')->first();
