@@ -25,10 +25,19 @@
 
   @yield('style')
 </head>
-<body class="navbar-top">
-  @include('layouts.partials.navbar')
+<body>
+  @if (Auth::check())
+    @include('layouts.partials.navbar')
+  @endif
+  <div class="page-container">
+    <div class="page-content">
+      @if (Auth::check())
+        @include('layouts.partials.sidebar')
+      @endif
 
-  @yield('content')
+      @yield('content')
+    </div>
+  </div>
 
   <!-- Scripts -->
 

@@ -71,7 +71,7 @@ $(function() {
             }
         },
         messages: {
-            username: "Enter your username or email.",
+            username: "Enter your email.",
             password: {
             	required: "Enter your password.",
             	minlength: jQuery.validator.format("At least {0} characters required.")

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------------
  *
- *  # Global less file
+ *  # Components
  *
  *  Common less file with imports of plugins and pages
  *
@@ -421,7 +421,7 @@ a.bg-danger:focus {
   box-shadow: 0 1px 0 #fff;
 }
 .page-header-inverse.has-cover {
-  background: url(../../images/login_cover.jpg);
+  background: url(../images/login_cover.jpg);
   background-size: cover;
 }
 .page-header-default {
@@ -431,7 +431,7 @@ a.bg-danger:focus {
   box-shadow: 0 1px 0 0 #ddd;
 }
 .page-header-default.has-cover {
-  background: url(../../images/backgrounds/seamless.png);
+  background: url(../images/backgrounds/seamless.png);
 }
 .page-title {
   padding: 32px 36px 32px 0;
@@ -3143,6 +3143,56 @@ li + .dropdown-header.highlight,
   .navbar-collapse {
     text-align: left;
     margin-left: -20px;
+  }
+}
+.header-highlight .navbar-header {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+.header-highlight .navbar-header:not([class*=bg-]) {
+  background-color: #263238;
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.1) inset, 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+.header-highlight .navbar-header > .navbar-nav > li > a {
+  color: #fff;
+}
+.header-highlight .navbar-header > .navbar-nav > li > a:hover,
+.header-highlight .navbar-header > .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+@media (min-width: 769px) {
+  .sidebar-xs .header-highlight .navbar-header {
+    min-width: 0;
+    width: 56px;
+    padding-left: 0;
+  }
+  .sidebar-xs .header-highlight .navbar-header .navbar-brand {
+    padding-left: 0;
+    padding-right: 0;
+    background: url(../images/logo_icon_light.png) no-repeat center center;
+    background-size: auto 16px;
+    float: none;
+    display: block;
+  }
+  .sidebar-xs .header-highlight .navbar-header .navbar-brand > img {
+    display: none;
+  }
+  .sidebar-main-hidden .header-highlight .navbar-header,
+  .sidebar-all-hidden .header-highlight .navbar-header {
+    display: none;
+  }
+}
+@media (min-width: 769px) {
+  .sidebar-fixed-expanded .header-highlight .navbar-collapse {
+    margin-left: 36px;
+  }
+  .sidebar-fixed-expanded .header-highlight .navbar-header {
+    position: fixed;
+    z-index: 99;
   }
 }
 @media (max-width: 768px) {

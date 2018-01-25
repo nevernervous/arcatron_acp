@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Username or Email" name="email" value="{{ old('email') }}" required="required" autofocus>
+                  <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required="required" autofocus>
                   <div class="form-control-feedback">
-                    <i class="icon-user text-muted"></i>
+                    <i class="icon-mail5 text-muted"></i>
                   </div>
                   @if ($errors->has('email'))
                   <label id="email-error" class="validation-error-label" for="email">
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
-                  <input type="text" class="form-control" placeholder="Password" name="password" required="required">
+                  <input type="password" class="form-control" placeholder="Password" name="password" required="required">
                   <div class="form-control-feedback">
                     <i class="icon-lock2 text-muted"></i>
                   </div>
