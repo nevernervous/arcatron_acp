@@ -34,8 +34,10 @@
       @if (Auth::check())
         @include('layouts.partials.sidebar')
       @endif
+      <div class="content-wrapper">
+        @yield('content')
+      </div>
 
-      @yield('content')
     </div>
   </div>
 
