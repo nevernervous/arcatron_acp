@@ -21,3 +21,25 @@ Route::get('/live', [
     'as'   => 'showLive',
     'uses' => 'LiveController@showLive'
 ]);
+
+Route::get('/profile', [
+    'as'   => 'showProfile',
+    'uses' => 'ProfileController@showProfile'
+]);
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('/users', [
+        'as'    => 'showUsers',
+        'uses'  => 'UsersController@showUsers'
+    ]);
+});
+
+Route::get('/search', [
+    'as'   => 'showSearch',
+    'uses' => 'SearchController@showSearch'
+]);
+
+Route::get('/logs', [
+    'as'   => 'showLogs',
+    'uses' => 'LogsController@showLogs'
+]);
