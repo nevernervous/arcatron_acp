@@ -32,13 +32,15 @@
             <a href="#"><i class="icon-search4"></i> <span>Search</span></a>
           </li>
           <li class="">
-            <a href="#"><i class="icon-users"></i> <span>Users</span></a>
-          </li>
-          <li class="">
             <a href="#"><i class="icon-file-text2"></i> <span>Logs</span></a>
           </li>
+          @role('admin')
           <li class="">
-            <a href="#"><i class="icon-switch2"></i> <span>Logout</span></a>
+            <a href="#"><i class="icon-users"></i> <span>Users</span></a>
+          </li>
+          @endrole
+          <li class="">
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-switch2"></i> <span>Logout</span></a>
           </li>
         </ul>
       </div>
