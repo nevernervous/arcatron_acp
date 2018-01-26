@@ -15,6 +15,29 @@ let showLess = function () {
     statusesTable.api().ajax.reload();
 };
 
+let ack = function (id) {
+    $.get('live/ack?id=' + id, function (data) {
+        statusesTable.api().ajax.reload();
+        if (data.status === 'success') {
+            new PNotify({
+                title: 'Success!',
+                text: 'Successfully acknowledged.',
+                addclass: 'bg-success',
+                icon: 'icon-shield-check',
+                delay: 1000,
+            });
+        } else {
+            new PNotify({
+                title: 'Fail!',
+                text: 'Failed to acknowledge.',
+                addclass: 'bg-danger',
+                icon: 'icon-shield-notice',
+                delay: 1000,
+            });
+        }
+    });
+};
+
 $(function () {
 
 
@@ -51,23 +74,21 @@ $(function () {
             {data: 'alarm_state'},
             {data: 'id'}
         ],
+        ordering: false,
         columnDefs: [{
-            orderable: false,
             width: 'auto',
             targets: [5],
             sClass: 'text-center'
         },{
-            orderable: false,
             width: 'auto',
             targets: [6],
             sClass: 'text-center'
         },{
-            orderable: false,
             width: 'auto',
             targets: [7],
             render: function (data, type, row) {
                 return `
-                        <button type="button" class="btn btn-primary">ACK</button>  
+                        <button type="button" class="btn btn-primary" onclick="ack(${data})">ACK</button>  
                     `
             },
         }],

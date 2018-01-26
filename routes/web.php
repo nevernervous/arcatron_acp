@@ -26,6 +26,10 @@ Route::group(['middleware' => ['auth']], function() {
         'as'   => 'getDeviceStatuses',
         'uses' => 'LiveController@getDeviceStatuses'
     ]);
+    Route::get('live/ack', [
+        'as'   => 'ack',
+        'uses' => 'LiveController@ack'
+    ]);
 
     Route::get('profile', [
         'as'   => 'showProfile',
