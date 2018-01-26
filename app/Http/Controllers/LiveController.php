@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class LiveController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            if (!Auth::user()->live_access)
+                return redirect('/profile');
+
+            return $next($request);
+        });
     }
 
     /**
@@ -24,5 +26,9 @@ class LiveController extends Controller
     public function showLive()
     {
         return view('live.index');
+    }
+
+    public function getDeviceStatuses($request) {
+
     }
 }

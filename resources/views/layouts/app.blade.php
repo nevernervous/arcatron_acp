@@ -55,6 +55,15 @@
   <!-- /theme JS files -->
 
   <script src="{{ asset('js/app.js') }}"></script>
+  <script>
+      $(function () {
+          $.ajaxSetup({
+              headers: {
+                  'X-CSRF-Token': "<?php echo csrf_token() ?>"
+              }
+          });
+      });
+  </script>
   @yield('script')
 </body>
 </html>

@@ -17,29 +17,39 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/live', [
-    'as'   => 'showLive',
-    'uses' => 'LiveController@showLive'
-]);
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('live', [
+        'as'   => 'showLive',
+        'uses' => 'LiveController@showLive'
+    ]);
+    Route::get('live/status', [
+        'as'   => 'getDeviceStatuses',
+        'uses' => 'LiveController@getDeviceStatuses'
+    ]);
 
-Route::get('/profile', [
-    'as'   => 'showProfile',
-    'uses' => 'ProfileController@showProfile'
-]);
+    Route::get('profile', [
+        'as'   => 'showProfile',
+        'uses' => 'ProfileController@showProfile'
+    ]);
 
-Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/users', [
-        'as'    => 'showUsers',
-        'uses'  => 'UsersController@showUsers'
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::get('users', [
+            'as'    => 'showUsers',
+            'uses'  => 'UsersController@showUsers'
+        ]);
+        Route::get('users/all', [
+            'as'    => 'getAllUsers',
+            'uses'  => 'UsersController@getAllUsers'
+        ]);
+    });
+
+    Route::get('search', [
+        'as'   => 'showSearch',
+        'uses' => 'SearchController@showSearch'
+    ]);
+
+    Route::get('logs', [
+        'as'   => 'showLogs',
+        'uses' => 'LogsController@showLogs'
     ]);
 });
-
-Route::get('/search', [
-    'as'   => 'showSearch',
-    'uses' => 'SearchController@showSearch'
-]);
-
-Route::get('/logs', [
-    'as'   => 'showLogs',
-    'uses' => 'LogsController@showLogs'
-]);
