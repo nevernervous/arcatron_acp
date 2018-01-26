@@ -20,7 +20,7 @@
     <div class="row">
       <div class="panel panel-white">
         <div class="panel-body">
-          <table class="table datatable-users">
+          <table class="table table-striped" id="datatable-users">
             <thead>
             <tr>
               <th>User name</th>

@@ -2,3 +2,19 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.color-red {
+    color: #FF1744;
+}
+
+.color-orange {
+    color: #E65100;
+}
+
+.color-yellow {
+    color: #F57F17;
+}
+
+.color-green {
+    color: #1B5E20;
+}

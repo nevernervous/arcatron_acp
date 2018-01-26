@@ -38,7 +38,7 @@ $(function () {
     });
 
 
-    var users_table = $('.datatable-users').dataTable({
+    $('#datatable-users').dataTable({
         ajax: 'users/all',
         columns: [
             {data: 'name'},
@@ -71,15 +71,11 @@ $(function () {
                     `
                 },
                 sClass: 'text-center',
-                targets: 4
+                targets: 4,
+                orderable: false,
             }
         ]
     });
-
-// setInterval( function () {
-//     console.log('reload');
-//     users_table.api().ajax.reload();
-// }, 1000 );
 
 
 // Add placeholder to the datatable filter option
