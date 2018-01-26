@@ -21,7 +21,7 @@ class CreateLogsTable extends Migration
             $table->string('action');
             $table->string('description');
             $table->string('ip');
-            $table->string('timestamps');
+            $table->timestamps();
         });
     }
 

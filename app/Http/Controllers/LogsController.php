@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Logs;
 
 class LogsController extends Controller
 {
@@ -18,6 +19,9 @@ class LogsController extends Controller
     }
 
     public function showLogs(Request $request) {
-        return view('logs.index');
+        $logs = Logs::with('user')->oldest()->get();
+        return view('logs.index', [
+            'logs' => $logs
+        ]);
     }
 }
