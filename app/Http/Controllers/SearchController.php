@@ -19,7 +19,7 @@ class SearchController extends Controller
     }
 
     public function showSearch(Request $request) {
-        $statuses = DeviceStatus::where('ack', '!=', true)->orderBy('id', 'desc')->get();;
+        $statuses = DeviceStatus::orderBy('id', 'desc')->get();;
         $data = [
           'statuses' => $statuses,
         ];

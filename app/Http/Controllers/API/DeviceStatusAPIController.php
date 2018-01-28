@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\DeviceStatus;
 use Carbon\Carbon;
 use App\Models\Customer;
+use App\Models\LiveStatus;
 
 class DeviceStatusAPIController extends Controller
 {
@@ -37,6 +38,26 @@ class DeviceStatusAPIController extends Controller
             $deviceStatus->critical_level = substr($status[5], 3);
             $deviceStatus->alarm_state = substr($status[6], 3);
             $deviceStatus->save();
+
+            $liveStatus = LiveStatus::where('customer_id', '=', $customer->id)
+                ->where('device_name', '=', $status[3])->first();
+
+            if ($liveStatus == null) {
+                $liveStatus = new LiveStatus();
+                $liveStatus->device_ip = $status[0];
+                $liveStatus->customer_id = $customer->id;
+                $liveStatus->department_name = $status[2];
+                $liveStatus->device_name = $status[3];
+                $liveStatus->date = Carbon::createFromFormat('m/d/Y H:i:s', $status[4]);
+                $liveStatus->critical_level = substr($status[5], 3);
+                $liveStatus->alarm_state = substr($status[6], 3);
+            }else {
+                $liveStatus->date = Carbon::createFromFormat('m/d/Y H:i:s', $status[4]);
+                $liveStatus->critical_level = substr($status[5], 3);
+                $liveStatus->alarm_state = substr($status[6], 3);
+            }
+
+            $liveStatus->save();
         }
         return response()->json(['status' => 'success']);
     }

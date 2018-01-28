@@ -30,14 +30,14 @@
             </tr>
             </thead>
           </table>
-          <div class="text-center">
-            <button type="button" id="btn-show-less" class="btn btn-info collapse" onclick="showLess()">
-              Show Less
-            </button>
-            <button type="button" class="btn btn-success" onclick="showMore()">
-              Show More
-            </button>
-          </div>
+          {{--<div class="text-center">--}}
+            {{--<button type="button" id="btn-show-less" class="btn btn-info collapse" onclick="showLess()">--}}
+              {{--Show Less--}}
+            {{--</button>--}}
+            {{--<button type="button" class="btn btn-success" onclick="showMore()">--}}
+              {{--Show More--}}
+            {{--</button>--}}
+          {{--</div>--}}
         </div>
       </div>
     </div>

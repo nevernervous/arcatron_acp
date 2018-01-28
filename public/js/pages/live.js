@@ -64,6 +64,7 @@ $(function () {
         bLengthChange: false,
         bPaginate: false,
         bInfo: false,
+        bFilter: false,
         columns: [
             {data: 'customer.name'},
             {data: 'device_name'},
@@ -109,6 +110,6 @@ $(function () {
         statusesTable.api().ajax.reload();
     }, 5000 );
 
-    // Add placeholder to the datatable filter option
-    $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
+    // // Add placeholder to the datatable filter option
+    // $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
 });

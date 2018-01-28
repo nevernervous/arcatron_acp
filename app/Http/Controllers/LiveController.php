@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\DeviceStatus;
+use App\Models\LiveStatus;
 use App\Models\Logs;
 
 class LiveController extends Controller
@@ -36,7 +36,7 @@ class LiveController extends Controller
         if(!$limit)
             $limit = 10;
 
-        $statuses = DeviceStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
+        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
         return response()->json([
             'status' => 'success',
             'data' => $statuses
@@ -47,14 +47,14 @@ class LiveController extends Controller
         $id = $request->query('id');
 
         try {
-            $status = DeviceStatus::find($id);
+            $status = LiveStatus::find($id);
             $status->ack = true;
             $status->save();
 
             $log = new Logs();
             $log->user_id = Auth::user()->id;
             $log->action = 'ACK';
-            $log->description = 'Acknowledged device status log(' . $id . ').';
+            $log->description = 'Acknowledged ' . $status->device_name . '.';
             $log->ip = $request->ip();
             $log->save();
         }catch (\Exception $e) {
