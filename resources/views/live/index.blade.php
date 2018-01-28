@@ -19,7 +19,7 @@
           <table class="table" id="datatable-statuses">
             <thead>
             <tr>
-              <th>Customer</th>
+              <th>Customer Name</th>
               <th>Device</th>
               <th>Device IP</th>
               <th>Department</th>

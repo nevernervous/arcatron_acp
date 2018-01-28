@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\DeviceStatus;
 
 class SearchController extends Controller
 {
@@ -18,6 +19,10 @@ class SearchController extends Controller
     }
 
     public function showSearch(Request $request) {
-        return view('search.index');
+        $statuses = DeviceStatus::where('ack', '!=', true)->orderBy('id', 'desc')->get();;
+        $data = [
+          'statuses' => $statuses,
+        ];
+        return view('search.index', $data);
     }
 }

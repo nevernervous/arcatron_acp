@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\DeviceStatus;
+use App\Models\Logs;
 
 class LiveController extends Controller
 {
@@ -48,6 +50,13 @@ class LiveController extends Controller
             $status = DeviceStatus::find($id);
             $status->ack = true;
             $status->save();
+
+            $log = new Logs();
+            $log->user_id = Auth::user()->id;
+            $log->action = 'ACK';
+            $log->description = 'Acknowledged device status log(' . $id . ').';
+            $log->ip = $request->ip();
+            $log->save();
         }catch (\Exception $e) {
             return response()->json([
                 'status' => 'fail'

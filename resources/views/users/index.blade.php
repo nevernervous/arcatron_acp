@@ -23,7 +23,7 @@
           <table class="table table-striped" id="datatable-users">
             <thead>
             <tr>
-              <th>User name</th>
+              <th>User Name</th>
               <th>Email</th>
               <th>Group</th>
               <th>Created Date</th>
