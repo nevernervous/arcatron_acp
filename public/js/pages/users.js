@@ -93,7 +93,7 @@ $(function () {
 
 
     // Setup validation
-    $(".form-validate").validate({
+    $("#new_user_form").validate({
         ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields
         errorClass: 'validation-error-label',
         successClass: 'validation-valid-label',
@@ -164,4 +164,52 @@ $(function () {
             }
         }
     });
+
+
+    /*
+        Clear content when modal closed.
+     */
+    $('#close_add_new_user_modal').click(function() {
+        let form = $('#new_user_form');
+        form.find("input").val("");
+        form.find(".validation-error-label").remove();
+    });
+
+    /*
+        Handle submit new user form
+     */
+    $('#new_user_form').ajaxForm({
+        delegation: true,
+        error: function (data, statusText, xhr, $form) {
+            new PNotify({
+                title: 'Fail!',
+                text: 'Sever encountered  error.Please try again.',
+                addclass: 'bg-danger',
+                icon: 'icon-shield-notice',
+                delay: 1000,
+            });
+        },
+        success: function (data, statusText, shr, $form) {
+            if(data.status === 'success') {
+                new PNotify({
+                    title: 'Success!',
+                    text: 'Successfully created.',
+                    addclass: 'bg-success',
+                    icon: 'icon-shield-check',
+                    delay: 1000,
+                });
+                setTimeout(function () {
+                    location.reload();
+                }, 200);
+            } else {
+                new PNotify({
+                    title: 'Fail!',
+                    text: data.message,
+                    addclass: 'bg-danger',
+                    icon: 'icon-shield-notice',
+                    delay: 1000,
+                });
+            }
+        }
+    })
 });

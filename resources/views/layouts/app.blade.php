@@ -46,6 +46,7 @@
   <!-- Theme JS files -->
   <script src="{{ asset('assets/js/plugins/loaders/pace.min.js') }}"></script>
   <script src="{{ asset('assets/js/core/libraries/jquery.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
   <script src="{{ asset('assets/js/core/libraries/bootstrap.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/ui/nicescroll.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>

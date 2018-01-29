@@ -14,7 +14,7 @@
 
   <div class="content">
     <div class="row">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_new_user_mdal"><i class="icon-user-plus position-left"></i> Add New User</button>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_new_user_modal"><i class="icon-user-plus position-left"></i> Add New User</button>
     </div>
     <br>
     <div class="row">
@@ -35,9 +35,9 @@
       </div>
     </div>
 
-    <div id="add_new_user_mdal" class="modal fade">
+    <div id="add_new_user_modal" class="modal fade">
       <div class="modal-dialog">
-        <form class="form-validate" action="{{ route('postAddUser') }}" method="post">
+        <form class="form-validate" id="new_user_form"action="{{ route('postAddUser') }}" method="post">
           {{ csrf_field() }}
           <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -68,7 +68,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group has-feedback has-feedback-left">
-                    <input type="password" class="form-control" placeholder="Password" name="password" required>
+                    <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
                     <div class="form-control-feedback">
                       <i class="icon-user-lock text-muted"></i>
                     </div>
@@ -89,19 +89,19 @@
                 <label class="display-block">User Type:</label>
 
                 <label class="radio-inline">
-                  <input type="radio" class="styled" name="role" >
+                  <input type="radio" class="styled" name="role" value="admin">
                   Admin
                 </label>
 
                 <label class="radio-inline">
-                  <input type="radio" class="styled" name="role" checked="checked">
+                  <input type="radio" class="styled" name="role" checked="checked" value="operator">
                   Operator
                 </label>
               </div>
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+              <button type="button" id="close_add_new_user_modal" class="btn btn-link" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary">Add</button>
             </div>
           </div>

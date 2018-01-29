@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
+use Hash;
 use Log;
 
 class UsersController extends Controller
@@ -20,6 +22,34 @@ class UsersController extends Controller
     }
 
     public function postAddUser(Request $request) {
+        $username = $request->get('username');
+        $email = $request->get('email');
+        $user = User::where('name', '=', $username)
+            ->orWhere('email', '=', $email)->first();
+
+        if ($user) {
+            return response()->json([
+                'status'  => 'fail',
+                'message' => 'User already exists.'
+            ]);
+        }
+
+        $user = new User();
+        $user->name = $username;
+        $user->email = $email;
+        $user->password = Hash::make($request->get('password'));
+        $user->live_access = true;
+        $user->search_access = true;
+
+        $user_role = $request->get('role');
+
+        if($user_role === 'admin')
+            $user->logs_access = true;
+
+        $user->save();
+
+        $role= Role::where('name', $user_role)->first();
+        $user->attachRole($role);
 
         return response()->json([
             'status'  => 'success',
