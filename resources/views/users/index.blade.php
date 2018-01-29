@@ -86,16 +86,16 @@
               </div>
 
               <div class="form-group">
-                <label class="display-block">Gender:</label>
+                <label class="display-block">User Type:</label>
 
                 <label class="radio-inline">
-                  <div class="choice"><span class="checked"><input type="radio" name="gender2" class="styled" checked="checked"></span></div>
-                  Male
+                  <input type="radio" class="styled" name="role" >
+                  Admin
                 </label>
 
                 <label class="radio-inline">
-                  <div class="choice"><span><input type="radio" name="gender2" class="styled"></span></div>
-                  Female
+                  <input type="radio" class="styled" name="role" checked="checked">
+                  Operator
                 </label>
               </div>
             </div>

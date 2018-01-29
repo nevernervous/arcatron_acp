@@ -83,7 +83,14 @@ $(function () {
         },{
             width: 'auto',
             targets: [6],
-            sClass: 'text-center'
+            render: function (data, type, row) {
+                if (data === 0)
+                    return 'ONLINE';
+                if (data === 1)
+                    return 'OFFLINE';
+                else
+                    return 'PACKET LOSS'
+            }
         },{
             width: 'auto',
             targets: [7],

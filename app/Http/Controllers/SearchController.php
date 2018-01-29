@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\DeviceStatus;
+use Log;
 
 class SearchController extends Controller
 {
@@ -27,6 +28,7 @@ class SearchController extends Controller
             'cl' => '',
             'as' => '',
         ];
+
         return view('search.index', $data);
     }
 

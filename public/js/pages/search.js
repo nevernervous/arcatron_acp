@@ -30,13 +30,13 @@ $(function() {
     // Basic datatable
     $('#datatable-search').DataTable({
         createdRow: function (row, data, dataIndex) {
-            if( data[6] === '0' ){
+            if( data[6] == 'ONLINE' ){
                 $(row).addClass('color-green');
-            } else if( data[6] === '1' && data[5] ===  '1' ){
+            } else if( data[6] == 'OFFLINE' && data[5] ===  '1' ){
                 $(row).addClass('color-red');
-            } else if( data[6]=== '1' && data[5] !==  '1' ) {
+            } else if( data[6] == 'OFFLINE' && data[5] !==  '1' ) {
                 $(row).addClass('color-orange');
-            } else if( data[6] === '2' ) {
+            } else if( data[6] == 'PACKET LOSS' ) {
                 $(row).addClass('color-yellow');
             }
         }
@@ -53,6 +53,54 @@ $(function() {
     $('.dataTables_length select').select2({
         minimumResultsForSearch: Infinity,
         width: 'auto'
+    });
+
+
+    // Floating labels
+    // ------------------------------
+
+    // Variables
+    var onClass = "on";
+    var showClass = "is-visible";
+
+
+    // Setup
+    $("input:not(.token-input):not(.bootstrap-tagsinput > input), textarea, select").on("checkval change", function () {
+
+        // Define label
+        var label = $(this).parents('.form-group-material').children(".control-label");
+
+        // Toggle label
+        if (this.value !== "") {
+            label.addClass(showClass);
+        }
+        else {
+            label.removeClass(showClass).addClass('animate');
+        }
+
+    }).on("keyup", function () {
+        $(this).trigger("checkval");
+    }).trigger("checkval").trigger('change');
+
+
+    // Remove animation on page load
+    $(window).on('load', function() {
+        $(".form-group-material").children('.control-label.is-visible').removeClass('animate');
+    });
+
+    $('.select').select2({
+        minimumResultsForSearch: Infinity
+    });
+
+
+    // Select with search
+    $('.select-search').select2();
+
+
+    // Fixed width. Single select
+    $('.select-fixed-single').select2({
+        minimumResultsForSearch: Infinity,
+        width: 250
     });
 
 });

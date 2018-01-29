@@ -55,7 +55,7 @@
                 <option></option>
                 <option value="0" {{$as === '0' ? 'selected': ''}}>ONLINE</option>
                 <option value="1" {{$as === '1' ? 'selected': ''}}>OFFLINE</option>
-                <option value="2" {{$as === '2' ? 'selected': ''}}>PACKET LOSS</option>
+                <option value="2" {{$as === '2' ? 'selected': ''}}>2</option>
               </select>
             </div>
           </div>
@@ -92,7 +92,7 @@
                   <td>{{$status->department_name}}</td>
                   <td>{{$status->date}}</td>
                   <td>{{$status->critical_level}}</td>
-                  <td>{{$status->alarm_state}}</td>
+                  <td>{{$status->alarm_state === 0 ? 'ONLINE' : $status->alarm_state === 1 ? 'OFFLINE' : 'PACKET LOSS'}}</td>
                 </tr>
               @endforeach
             </tbody>
@@ -105,6 +105,6 @@
 
 @section('script')
   <script type="text/javascript" src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('assets/js/pages/form_select2.js') }}"></script>
+  {{--<script type="text/javascript" src="{{ asset('assets/js/pages/form_select2.js') }}"></script>--}}
   <script type="text/javascript" src="{{ asset('js/pages/search.js') }}"></script>
 @endsection
