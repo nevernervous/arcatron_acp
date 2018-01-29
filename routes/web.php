@@ -45,11 +45,20 @@ Route::group(['middleware' => ['auth']], function() {
             'as'    => 'getAllUsers',
             'uses'  => 'UsersController@getAllUsers'
         ]);
+        Route::post('users/add', [
+            'as'    => 'postAddUser',
+            'uses'  => 'UsersController@postAddUser'
+        ]);
     });
 
     Route::get('search', [
         'as'   => 'showSearch',
         'uses' => 'SearchController@showSearch'
+    ]);
+
+    Route::post('search', [
+        'as'   => 'postSearch',
+        'uses' => 'SearchController@postSearch'
     ]);
 
     Route::get('logs', [

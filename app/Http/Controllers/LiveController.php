@@ -32,11 +32,12 @@ class LiveController extends Controller
     }
 
     public function getDeviceStatuses(Request $request) {
-        $limit = $request->query('limit');
-        if(!$limit)
-            $limit = 10;
+//        $limit = $request->query('limit');
+//        if(!$limit)
+//            $limit = 10;
 
-        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
+//        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
+        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->get();
         return response()->json([
             'status' => 'success',
             'data' => $statuses

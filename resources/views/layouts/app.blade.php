@@ -50,6 +50,7 @@
   <script src="{{ asset('assets/js/plugins/ui/nicescroll.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/loaders/blockui.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/notifications/pnotify.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/forms/selects/select2.min.js') }}"></script>
 
   <script src="{{ asset('assets/js/core/app.js') }}"></script>
   <script src="{{ asset('assets/js/pages/layout_fixed_custom.js') }}"></script>
