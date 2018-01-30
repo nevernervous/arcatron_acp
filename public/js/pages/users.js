@@ -64,7 +64,7 @@ $(function () {
                                </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
-                                    <li><a href="#"><i class="icon-cross2"></i> Delete</a></li>
+                                    <li><a href="#" onclick="deleteUser(${data})"><i class="icon-cross2"></i> Delete</a></li>
                                 </ul>
 							</li>
                         </ul>
@@ -213,3 +213,25 @@ $(function () {
         }
     })
 });
+
+let deleteUser = function (id) {
+    bootbox.confirm({
+        title: "<b>Delete user?</b>",
+        message: "Are you sure to delete this user?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if(result) {
+                console.log(id);
+            }
+        }
+    });
+};

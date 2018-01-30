@@ -49,6 +49,10 @@ Route::group(['middleware' => ['auth']], function() {
             'as'    => 'postAddUser',
             'uses'  => 'UsersController@postAddUser'
         ]);
+        Route::post('users/delete', [
+            'as'    => 'postDeleteUser',
+            'uses'  => 'UsersController@postDeleteUser'
+        ]);
     });
 
     Route::get('search', [

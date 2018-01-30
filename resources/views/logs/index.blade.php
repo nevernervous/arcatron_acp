@@ -5,8 +5,8 @@
     <div class="page-header-content">
       <div class="page-title">
         <h4>
-          <i class="icon-home4 position-left"></i>
-          <span class="text-file-text2">Logs</span>
+          <i class="icon-file-text2 position-left"></i>
+          <span class="text-semibold">Logs</span>
         </h4>
       </div>
     </div>

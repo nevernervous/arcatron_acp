@@ -5,8 +5,8 @@
     <div class="page-header-content">
       <div class="page-title">
         <h4>
-          <i class="icon-home4 position-left"></i>
-          <span class="text-search4">Search</span>
+          <i class="icon-search4 position-left"></i>
+          <span class="text-semibold">Search</span>
         </h4>
       </div>
     </div>

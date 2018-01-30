@@ -115,6 +115,7 @@
   <script src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/forms/validation/validate.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/notifications/bootbox.min.js') }}"></script>
   <script src="{{ asset('assets/js/pages/form_layouts.js') }}"></script>
   <script src="{{ asset('js/pages/users.js') }}"></script>
 

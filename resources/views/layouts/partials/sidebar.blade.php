@@ -2,19 +2,19 @@
 <div class="sidebar sidebar-main">
   <div class="sidebar-content">
     <!-- User menu -->
-    <div class="sidebar-user">
-      <div class="category-content">
-        <div class="media">
-          <a href="#" class="media-left"><img src="{{ asset('images/user.png') }}" class="img-circle img-sm" alt=""></a>
-          <div class="media-body">
-            <span class="media-heading text-semibold">{{ Auth::user()->name }}</span>
-            <div class="text-size-mini text-muted">
-              <i class="icon-mail5 text-size-small"></i> &nbsp;{{ Auth::user()->email }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    {{--<div class="sidebar-user">--}}
+      {{--<div class="category-content">--}}
+        {{--<div class="media">--}}
+          {{--<a href="#" class="media-left"><img src="{{ asset('images/user.png') }}" class="img-circle img-sm" alt=""></a>--}}
+          {{--<div class="media-body">--}}
+            {{--<span class="media-heading text-semibold">{{ Auth::user()->name }}</span>--}}
+            {{--<div class="text-size-mini text-muted">--}}
+              {{--<i class="icon-mail5 text-size-small"></i> &nbsp;{{ Auth::user()->email }}--}}
+            {{--</div>--}}
+          {{--</div>--}}
+        {{--</div>--}}
+      {{--</div>--}}
+    {{--</div>--}}
     <!-- /user menu -->
 
     <!-- Main navigation -->
@@ -28,19 +28,19 @@
 
           @if ( Auth::user()->live_access )
           <li class="{{ Request::is('*live*') ? 'active' : '' }}">
-            <a href="{{ route('showLive') }}"><i class="icon-home4"></i> <span>Live</span></a>
+            <a href="{{ route('showLive') }}"><i class="icon-home4"></i> Live</a>
           </li>
           @endif
 
           @if ( Auth::user()->search_access )
           <li class="{{ Request::is('*search*') ? 'active' : '' }}">
-            <a href="{{ route('showSearch') }}"><i class="icon-search4"></i> <span>Search</span></a>
+            <a href="{{ route('showSearch') }}"><i class="icon-search4"></i> Search</a>
           </li>
           @endif
 
           @if ( Auth::user()->logs_access )
           <li class="{{ Request::is('*logs*') ? 'active' : '' }}">
-            <a href="{{ route('showLogs') }}"><i class="icon-file-text2"></i> <span>Logs</span></a>
+            <a href="{{ route('showLogs') }}"><i class="icon-file-text2"></i> Logs</a>
           </li>
           @endif
 
@@ -50,7 +50,7 @@
 
           @role('admin')
           <li class="{{ Request::is('*users*') ? 'active' : '' }}">
-            <a href="{{ route('showUsers') }}"><i class="icon-users"></i> <span>Users</span></a>
+            <a href="{{ route('showUsers') }}"><i class="icon-users"></i> Users</a>
           </li>
           @endrole
 

@@ -56,4 +56,13 @@ class UsersController extends Controller
             'message' => 'User successfully created.'
         ]);
     }
+
+    public function postDeleteUser($request) {
+        User::find($request->get('id'))->delete();
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'User successfully deleted.'
+        ]);
+    }
 }

@@ -37,7 +37,10 @@ class LiveController extends Controller
 //            $limit = 10;
 
 //        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
-        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->get();
+        $a = $request->get('as');
+        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)
+            ->where('alarm_state', '=', $request->get('as'))
+            ->orderBy('date', 'desc')->get();
         return response()->json([
             'status' => 'success',
             'data' => $statuses
