@@ -23,7 +23,21 @@
     margin-top: -5px;
     margin-left: -10px;
     height: 30px;
-    width: 200px;
+    display: inline-block;
+}
+
+.navbar-brand>span {
+    font-size: 18px;
+    color: white;
+}
+
+.sidebar-xs .header-highlight .navbar-header .navbar-brand {
+    background-image: url("/acp/images/logo.png");
+    background-size: 50px;
+}
+
+.sidebar-xs .header-highlight .navbar-header .navbar-brand>span {
+    display: none;
 }
 
 .table th { font-size: 15px; }

@@ -57,7 +57,7 @@ class UsersController extends Controller
         ]);
     }
 
-    public function postDeleteUser($request) {
+    public function postDeleteUser(Request $request) {
         User::find($request->get('id'))->delete();
 
         return response()->json([

@@ -193,7 +193,7 @@ $(function () {
             if(data.status === 'success') {
                 new PNotify({
                     title: 'Success!',
-                    text: 'Successfully created.',
+                    text: data.message,
                     addclass: 'bg-success',
                     icon: 'icon-shield-check',
                     delay: 1000,
@@ -230,7 +230,28 @@ let deleteUser = function (id) {
         },
         callback: function (result) {
             if(result) {
-                console.log(id);
+                $.post("users/delete", {id}, function (data) {
+                    if ( data.status === 'success') {
+                        new PNotify({
+                            title: 'Success!',
+                            text: data.message,
+                            addclass: 'bg-success',
+                            icon: 'icon-shield-check',
+                            delay: 1000,
+                        });
+                        setTimeout(function () {
+                            location.reload();
+                        }, 200);
+                    } else {
+                        new PNotify({
+                            title: 'Fail!',
+                            text: data.message,
+                            addclass: 'bg-danger',
+                            icon: 'icon-shield-notice',
+                            delay: 1000,
+                        });
+                    }
+                });
             }
         }
     });
