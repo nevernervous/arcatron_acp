@@ -40,6 +40,7 @@ class DeviceStatusAPIController extends Controller
             $deviceStatus->save();
 
             $liveStatus = LiveStatus::where('customer_id', '=', $customer->id)
+                ->where('department_name', '=', $status[2])
                 ->where('device_name', '=', $status[3])->first();
 
             if ($liveStatus == null) {

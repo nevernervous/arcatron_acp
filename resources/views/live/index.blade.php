@@ -23,9 +23,9 @@
             <thead>
             <tr>
               <th>Customer Name</th>
+              <th>Department</th>
               <th>Device</th>
               <th>Device IP</th>
-              <th>Department</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
@@ -47,9 +47,9 @@
             <thead>
             <tr>
               <th>Customer Name</th>
+              <th>Department</th>
               <th>Device</th>
               <th>Device IP</th>
-              <th>Department</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
@@ -71,9 +71,9 @@
             <thead>
             <tr>
               <th>Customer Name</th>
+              <th>Department</th>
               <th>Device</th>
               <th>Device IP</th>
-              <th>Department</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>

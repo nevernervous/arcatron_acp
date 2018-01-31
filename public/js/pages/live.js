@@ -73,9 +73,9 @@ $(function () {
         scrollCollapse: true,
         columns: [
             {data: 'customer.name'},
+            {data: 'department_name'},
             {data: 'device_name'},
             {data: 'device_ip'},
-            {data: 'department_name'},
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},
@@ -127,9 +127,9 @@ $(function () {
         bFilter: false,
         columns: [
             {data: 'customer.name'},
+            {data: 'department_name'},
             {data: 'device_name'},
             {data: 'device_ip'},
-            {data: 'department_name'},
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},
@@ -181,9 +181,9 @@ $(function () {
         bFilter: false,
         columns: [
             {data: 'customer.name'},
+            {data: 'department_name'},
             {data: 'device_name'},
             {data: 'device_ip'},
-            {data: 'department_name'},
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},

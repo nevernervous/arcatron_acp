@@ -75,9 +75,9 @@
             <thead>
             <tr>
               <th>Customer Name</th>
+              <th>Department</th>
               <th>Device</th>
               <th>Device IP</th>
-              <th>Department</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
@@ -87,9 +87,9 @@
               @foreach($statuses as $status)
                 <tr id={{'status-'. $status->id}}>
                   <td>{{$status->customer->name}}</td>
+                  <td>{{$status->department_name}}</td>
                   <td>{{$status->device_name}}</td>
                   <td>{{$status->device_ip}}</td>
-                  <td>{{$status->department_name}}</td>
                   <td>{{$status->date}}</td>
                   <td>{{$status->critical_level}}</td>
                   <td>{{$status->alarm_state === 0 ? 'ONLINE' : $status->alarm_state === 1 ? 'OFFLINE' : 'PACKET LOSS'}}</td>
