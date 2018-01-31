@@ -37,7 +37,7 @@
 
     <div id="add_new_user_modal" class="modal fade">
       <div class="modal-dialog">
-        <form class="form-validate" id="new_user_form"action="{{ route('postAddUser') }}" method="post">
+        <form class="form-validate" id="new_user_form" action="{{ route('postAddUser') }}" method="post">
           {{ csrf_field() }}
           <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -70,7 +70,7 @@
                   <div class="form-group has-feedback has-feedback-left">
                     <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
                     <div class="form-control-feedback">
-                      <i class="icon-user-lock text-muted"></i>
+                      <i class="icon-lock2  text-muted"></i>
                     </div>
                   </div>
                 </div>
@@ -79,7 +79,7 @@
                   <div class="form-group has-feedback has-feedback-left">
                     <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirm" required>
                     <div class="form-control-feedback">
-                      <i class="icon-user-lock text-muted"></i>
+                      <i class="icon-lock2  text-muted"></i>
                     </div>
                   </div>
                 </div>

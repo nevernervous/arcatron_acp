@@ -36,6 +36,17 @@ Route::group(['middleware' => ['auth']], function() {
         'uses' => 'ProfileController@showProfile'
     ]);
 
+    Route::post('profile', [
+        'as'   => 'postUpdateProfile',
+        'uses' => 'ProfileController@postUpdateProfile'
+    ]);
+
+    Route::post('profile/change-password', [
+        'as'   => 'postChangePassword',
+        'uses' => 'ProfileController@postChangePassword'
+    ]);
+
+
     Route::group(['middleware' => ['role:admin']], function () {
         Route::get('users', [
             'as'    => 'showUsers',

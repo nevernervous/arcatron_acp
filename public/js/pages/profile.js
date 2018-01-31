@@ -1,0 +1,153 @@
+$(function () {
+    let password_form = $("#password_form");
+
+    $('#password_change_modal').on('hidden.bs.modal', function() {
+        password_form.find("input").val("");
+        password_form.find(".validation-error-label").remove();
+    });
+
+    /*
+        Handle update proifle.
+     */
+    $('#profile_form').ajaxForm({
+        delegation: true,
+        error: function (data, statusText, xhr, $form) {
+            new PNotify({
+                title: 'Fail!',
+                text: 'Sever encountered  error.Please try again.',
+                addclass: 'bg-danger',
+                icon: 'icon-shield-notice',
+                delay: 1000,
+            });
+        },
+        success: function (data, statusText, shr, $form) {
+            if(data.status === 'success') {
+                new PNotify({
+                    title: 'Success!',
+                    text: data.message,
+                    addclass: 'bg-success',
+                    icon: 'icon-shield-check',
+                    delay: 1000,
+                });
+            } else {
+                new PNotify({
+                    title: 'Fail!',
+                    text: data.message,
+                    addclass: 'bg-danger',
+                    icon: 'icon-shield-notice',
+                    delay: 1000,
+                });
+            }
+        }
+    });
+
+    // Password change form validation
+
+    password_form.validate({
+        ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields
+        errorClass: 'validation-error-label',
+        successClass: 'validation-valid-label',
+        highlight: function(element, errorClass) {
+            $(element).removeClass(errorClass);
+        },
+        unhighlight: function(element, errorClass) {
+            $(element).removeClass(errorClass);
+        },
+
+        // Different components require proper error label placement
+        errorPlacement: function(error, element) {
+
+            // Styled checkboxes, radios, bootstrap switch
+            if (element.parents('div').hasClass("checker") || element.parents('div').hasClass("choice") || element.parent().hasClass('bootstrap-switch-container') ) {
+                if(element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                    error.appendTo( element.parent().parent().parent().parent() );
+                }
+                else {
+                    error.appendTo( element.parent().parent().parent().parent().parent() );
+                }
+            }
+
+            // Unstyled checkboxes, radios
+            else if (element.parents('div').hasClass('checkbox') || element.parents('div').hasClass('radio')) {
+                error.appendTo( element.parent().parent().parent() );
+            }
+
+            // Input with icons and Select2
+            else if (element.parents('div').hasClass('has-feedback') || element.hasClass('select2-hidden-accessible')) {
+                error.appendTo( element.parent() );
+            }
+
+            // Inline checkboxes, radios
+            else if (element.parents('label').hasClass('checkbox-inline') || element.parents('label').hasClass('radio-inline')) {
+                error.appendTo( element.parent().parent() );
+            }
+
+            // Input group, styled file input
+            else if (element.parent().hasClass('uploader') || element.parents().hasClass('input-group')) {
+                error.appendTo( element.parent().parent() );
+            }
+
+            else {
+                error.insertAfter(element);
+            }
+        },
+        validClass: "validation-valid-label",
+        rules: {
+            password: {
+                minlength: 5
+            },
+            password_confirm: {
+                equalTo: '#password',
+                minlength: 5
+            }
+        },
+        messages: {
+            old_password: "Enter old password.",
+
+            password: {
+                required: "Enter new password.",
+                minlength: jQuery.validator.format("At least {0} characters required.")
+            },
+            password_confirm: {
+                required: "Enter confirm password.",
+                equalTo: "The password confirmation does not match.",
+                minlength: jQuery.validator.format("At least {0} characters required.")
+            }
+        }
+    });
+
+    /*
+        Handle password change.
+     */
+    password_form.ajaxForm({
+        delegation: true,
+        error: function (data, statusText, xhr, $form) {
+            new PNotify({
+                title: 'Fail!',
+                text: 'Sever encountered  error.Please try again.',
+                addclass: 'bg-danger',
+                icon: 'icon-shield-notice',
+                delay: 1000,
+            });
+        },
+        success: function (data, statusText, shr, $form) {
+            if(data.status === 'success') {
+                new PNotify({
+                    title: 'Success!',
+                    text: data.message,
+                    addclass: 'bg-success',
+                    icon: 'icon-shield-check',
+                    delay: 1000,
+                });
+                $('#password_change_modal').modal('hide');
+            } else {
+                swal({
+                    title: "Sorry...",
+                    text: data.message,
+                    confirmButtonColor: "#EF5350",
+                    type: "error"
+                });
+            }
+        }
+    });
+});
