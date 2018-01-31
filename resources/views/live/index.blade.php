@@ -71,7 +71,7 @@
             <thead>
             <tr>
               <th>Customer Name</th>
-              <th>Department</th>
+
               <th>Device</th>
               <th>Device IP</th>
               <th>Time</th>

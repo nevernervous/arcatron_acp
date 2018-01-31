@@ -35,9 +35,9 @@
       </div>
     </div>
 
-    <div id="add_new_user_modal" class="modal fade">
+    <div id="add_new_user_modal" class="modal fade has-input">
       <div class="modal-dialog">
-        <form class="form-validate" id="new_user_form" action="{{ route('postAddUser') }}" method="post">
+        <form class="form-validate ajax" id="new_user_form" action="{{ route('postAddUser') }}" method="post">
           {{ csrf_field() }}
           <div class="modal-content">
             <div class="modal-header bg-primary">

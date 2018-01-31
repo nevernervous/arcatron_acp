@@ -64,6 +64,14 @@ Route::group(['middleware' => ['auth']], function() {
             'as'    => 'postDeleteUser',
             'uses'  => 'UsersController@postDeleteUser'
         ]);
+        Route::get('users/edit/{id}', [
+            'as'    => 'showEditUser',
+            'uses'  => 'UsersController@showEditUser'
+        ]);
+        Route::post('users/edit/{id}', [
+            'as'    => 'postUpdateUser',
+            'uses'  => 'UsersController@postUpdateUser'
+        ]);
     });
 
     Route::get('search', [

@@ -18,7 +18,7 @@
         <h6 class="panel-title">Account</h6>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal" id="profile_form" method="POST" action="{{ route('postUpdateProfile') }}">
+        <form class="form-horizontal ajax" method="POST" action="{{ route('postUpdateProfile') }}">
           <div class="form-group">
             <label class="control-label col-md-2">User Name:</label>
             <div class="col-md-10">
@@ -44,9 +44,9 @@
       </div>
     </div>
 
-    <div id="password_change_modal" class="modal fade">
+    <div id="password_change_modal" class="modal fade has-input">
       <div class="modal-dialog">
-        <form class="form-validate" id="password_form" action="{{ route('postChangePassword') }}" method="post">
+        <form class="form-validate ajax closeModalAfter" id="password_form" action="{{ route('postChangePassword') }}" method="post">
           <div class="modal-content">
             <div class="modal-header bg-primary">
               <button type="button" class="close" data-dismiss="modal">&times;</button>

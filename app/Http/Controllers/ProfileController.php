@@ -46,13 +46,14 @@ class ProfileController extends Controller
         } else {
             return response()->json([
                 'status'  => 'fail',
+                'swal'    => true,
                 'message' => 'Password is not correct.'
             ]);
         }
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Successfully changed.'
+            'message' => 'Successfully changed.',
         ]);
     }
 }

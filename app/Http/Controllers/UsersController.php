@@ -53,7 +53,8 @@ class UsersController extends Controller
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'User successfully created.'
+            'message' => 'User successfully created.',
+            'reload'  => true,
         ]);
     }
 
@@ -63,6 +64,22 @@ class UsersController extends Controller
         return response()->json([
             'status'  => 'success',
             'message' => 'User successfully deleted.'
+        ]);
+    }
+
+    public function showEditUser($id) {
+        $user = User::find($id);
+        return view('users.edit', [
+            'user' => $user
+        ]);
+    }
+
+    public function postUpdateUser(Request $request, $id) {
+        $user = User::find($id);
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'User successfully updated.'
         ]);
     }
 }
