@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class LiveStatus extends Model
 {
@@ -14,5 +15,9 @@ class LiveStatus extends Model
      */
     public function customer() {
         return $this->belongsTo(\App\Models\Customer::class);
+    }
+
+    public function getDateAttribute($value) {
+        return Carbon::parse($value)->format('d/m/Y H:i:s');
     }
 }
