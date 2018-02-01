@@ -85,6 +85,5 @@
 
 @section('script')
   <script src="{{ asset('assets/js/plugins/forms/validation/validate.min.js') }}"></script>
-  <script src="{{ asset('assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
   <script src="{{ asset('js/pages/login.js') }}"></script>
 @endsection

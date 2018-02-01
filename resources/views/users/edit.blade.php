@@ -20,27 +20,37 @@
             <ul class="nav nav-tabs nav-tabs-bottom">
               <li class="active"><a href="#account-tab" data-toggle="tab">Account</a></li>
               <li><a href="#customer-tab" data-toggle="tab">Customer Assign</a></li>
-              <li><a href="#page-tab" data-toggle="tab">Page Access</a></li>
             </ul>
           </div>
 
           <div class="tab-content">
             <div class="tab-pane active" id="account-tab">
-              <form class="form-horizontal" id="profile_form" method="POST" action="{{ route('postUpdateProfile') }}">
+              <form class="form-horizontal ajax" id="profile_form" method="POST" action="{{ route('postUpdateUser', $user->id) }}">
+                <input type="hidden" name="type" value="account">
                 <div class="form-group">
                   <label class="control-label col-md-2">User Name:</label>
                   <div class="col-md-10">
-                    <input type="text" class="form-control" name="username" disabled autofocus
-                           value="{{ $user->name }}">
+                    <input type="text" class="form-control" name="username" disabled value="{{ $user->name }}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label col-md-2">Email:</label>
                   <div class="col-md-10">
-                    <input type="email" class="form-control" name="email" required autofocus
-                           value="{{ $user->email }}">
+                    <input type="email" class="form-control" name="email" required value="{{ $user->email }}">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label class="control-label col-md-2">Page Access:</label>
+                  <div class="col-md-10">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" class="styled" name="logs_page" {{ $user->logs_access ? 'checked' : ''  }}>
+                        Logs Page
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <div class="col-md-offset-2 col-md-10">
                     <button type="submit" class="btn btn-success">Update</button>
@@ -51,10 +61,6 @@
 
             <div class="tab-pane" id="customer-tab">
               Customer tab
-            </div>
-
-            <div class="tab-pane" id="page-tab">
-              Page Access
             </div>
           </div>
         </div>

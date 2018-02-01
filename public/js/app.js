@@ -1,4 +1,7 @@
 $(function () {
+    // Style checkboxes and radios
+    $('.styled').uniform();
+
     $('.modal.has-input').on('hidden.bs.modal', function() {
         $(this).find("input").val("");
         $(this).find(".validation-error-label").remove();

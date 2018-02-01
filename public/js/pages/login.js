@@ -1,9 +1,5 @@
 $(function() {
 
-    // Style checkboxes and radios
-    $('.styled').uniform();
-
-
     // Setup validation
     $(".form-validate").validate({
         ignore: 'input[type=hidden], .select2-search__field', // ignore hidden fields

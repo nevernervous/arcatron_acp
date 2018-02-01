@@ -22,15 +22,13 @@
           <div class="form-group">
             <label class="control-label col-md-2">User Name:</label>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="username" disabled autofocus
-                     value="{{ Auth::user()->name }}">
+              <input type="text" class="form-control" name="username" disabled value="{{ Auth::user()->name }}">
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-2">Email:</label>
             <div class="col-md-10">
-              <input type="email" class="form-control" name="email" required autofocus
-                     value="{{ Auth::user()->email }}">
+              <input type="email" class="form-control" name="email" required value="{{ Auth::user()->email }}">
             </div>
           </div>
           <div class="form-group">

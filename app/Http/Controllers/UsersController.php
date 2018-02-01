@@ -77,9 +77,34 @@ class UsersController extends Controller
     public function postUpdateUser(Request $request, $id) {
         $user = User::find($id);
 
+        $type = $request->get('type');
+
+        if ($type === 'account') {
+            $email = $request->get('email');
+            if($user->email != $email) {
+                if (User::where('email', '=', $email)->exists())
+                    return response()->json([
+                        'status'  => 'fail',
+                        'message' => 'Email already exists.'
+                    ]);
+                $user->email = $email;
+            }
+
+            if ($request->get('logs_page') === 'on')
+                $user->logs_access = true;
+            else
+                $user->logs_access = false;
+
+            $user->save();
+
+            return response()->json([
+                'status'  => 'success',
+                'message' => 'User successfully updated.'
+            ]);
+        }
+
         return response()->json([
             'status'  => 'success',
-            'message' => 'User successfully updated.'
         ]);
     }
 }
