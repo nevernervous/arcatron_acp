@@ -2,6 +2,10 @@ $(function () {
     // Style checkboxes and radios
     $('.styled').uniform();
 
+    $('.select').select2({
+        minimumResultsForSearch: Infinity
+    });
+
     $('.modal.has-input').on('hidden.bs.modal', function() {
         $(this).find("input").val("");
         $(this).find(".validation-error-label").remove();

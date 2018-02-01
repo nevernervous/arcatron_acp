@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Customer;
 use Hash;
 use Log;
 
@@ -69,8 +70,10 @@ class UsersController extends Controller
 
     public function showEditUser($id) {
         $user = User::find($id);
+        $customers = Customer::all();
         return view('users.edit', [
-            'user' => $user
+            'user' => $user,
+            'customers' => $customers,
         ]);
     }
 
@@ -78,6 +81,8 @@ class UsersController extends Controller
         $user = User::find($id);
 
         $type = $request->get('type');
+
+        $message = '';
 
         if ($type === 'account') {
             $email = $request->get('email');
@@ -96,15 +101,14 @@ class UsersController extends Controller
                 $user->logs_access = false;
 
             $user->save();
-
-            return response()->json([
-                'status'  => 'success',
-                'message' => 'User successfully updated.'
-            ]);
+            $message = 'User successfully updated.';
+        } else {
+            $customers = $request->get('customers');
         }
 
         return response()->json([
             'status'  => 'success',
+            'message' => $message,
         ]);
     }
 }

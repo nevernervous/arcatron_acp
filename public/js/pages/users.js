@@ -164,7 +164,6 @@ $(function () {
             }
         }
     });
-
 });
 
 let deleteUser = function (id) {

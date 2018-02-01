@@ -25,7 +25,7 @@
 
           <div class="tab-content">
             <div class="tab-pane active" id="account-tab">
-              <form class="form-horizontal ajax" id="profile_form" method="POST" action="{{ route('postUpdateUser', $user->id) }}">
+              <form class="form-horizontal ajax" method="POST" action="{{ route('postUpdateUser', $user->id) }}">
                 <input type="hidden" name="type" value="account">
                 <div class="form-group">
                   <label class="control-label col-md-2">User Name:</label>
@@ -60,7 +60,24 @@
             </div>
 
             <div class="tab-pane" id="customer-tab">
-              Customer tab
+              <form class="form-horizontal ajax" method="POST" action="{{ route('postUpdateUser', $user->id) }}">
+                <input type="hidden" name="type" value="customer">
+                <div class="form-group">
+                  <label class="control-label col-md-2">Assigned Customers:</label>
+                  <div class="col-md-10">
+                    <select data-placeholder="Select Customer" multiple="multiple" class="select" name="customers[]">
+                      @foreach($customers as $customer)
+                        <option value={{ $customer->id }}>{{ $customer->name }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-success">Update</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
