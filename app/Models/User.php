@@ -37,4 +37,8 @@ class User extends Authenticatable
     public function logs() {
         return $this->hasMany('App\Models\Logs');
     }
+
+    public function customers() {
+        return $this->belongsToMany('App\Models\Customer', 'user_customer');
+    }
 }

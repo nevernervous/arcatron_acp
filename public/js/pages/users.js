@@ -63,7 +63,7 @@ $(function () {
                                     <i class="icon-menu9"></i>
                                </a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+                                    <li><a href="users/edit/${data}"><i class="icon-pencil"></i> Edit</a></li>
                                     <li><a href="#" onclick="deleteUser(${data})"><i class="icon-cross2"></i> Delete</a></li>
                                 </ul>
 							</li>

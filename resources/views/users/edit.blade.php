@@ -67,7 +67,7 @@
                   <div class="col-md-10">
                     <select data-placeholder="Select Customer" multiple="multiple" class="select" name="customers[]">
                       @foreach($customers as $customer)
-                        <option value={{ $customer->id }}>{{ $customer->name }}</option>
+                        <option value={{ $customer->id }} {{ in_array($customer->id, $assignedCustomers) ? 'selected' : '' }}>{{ $customer->name }}</option>
                       @endforeach
                     </select>
                   </div>

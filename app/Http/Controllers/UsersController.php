@@ -70,9 +70,11 @@ class UsersController extends Controller
 
     public function showEditUser($id) {
         $user = User::find($id);
+        $assignedCustomers = $user->customers()->pluck('id')->toArray();
         $customers = Customer::all();
         return view('users.edit', [
             'user' => $user,
+            'assignedCustomers' => $assignedCustomers,
             'customers' => $customers,
         ]);
     }
@@ -100,10 +102,13 @@ class UsersController extends Controller
             else
                 $user->logs_access = false;
 
-            $user->save();
+            $user->update();
             $message = 'User successfully updated.';
         } else {
             $customers = $request->get('customers');
+            $user->customers()->sync($customers);
+            $user->update();
+            $message = 'Successfully assigned.';
         }
 
         return response()->json([
