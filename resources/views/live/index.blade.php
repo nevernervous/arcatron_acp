@@ -12,20 +12,20 @@
     {{--</div>--}}
   {{--</div>--}}
 
-  <div class="content">
+  <div class="content" style="margin-top: -48px">
     <div class="row">
-      <div class="panel panel-white">
+      <div class="panel panel-white live">
         <div class="panel-heading">
           <h6 class="panel-title">OFFLINE Devices</h6>
         </div>
         <div class="panel-body">
-          <table class="table" id="datatable-offline">
+          <table class="table" id="datatable-offline" cellspacing="0" cellpadding="0" width="100%">
             <thead>
             <tr>
-              <th>Customer Name</th>
+              <th>Customer</th>
               <th>Department</th>
               <th>Device</th>
-              <th>Device IP</th>
+              <th>IP</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
@@ -38,18 +38,18 @@
     </div>
 
     <div class="row">
-      <div class="panel panel-white">
+      <div class="panel panel-white live">
         <div class="panel-heading">
           <h6 class="panel-title">PACKET LOSS Devices</h6>
         </div>
         <div class="panel-body">
-          <table class="table" id="datatable-packet-loss">
+          <table class="table" id="datatable-packet-loss" width="100%">
             <thead>
             <tr>
-              <th>Customer Name</th>
+              <th>Customer</th>
               <th>Department</th>
               <th>Device</th>
-              <th>Device IP</th>
+              <th>IP</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="row">
-      <div class="panel panel-white">
+      <div class="panel panel-white live">
         <div class="panel-heading">
           <h6 class="panel-title">ONLINE Devices</h6>
         </div>
@@ -70,10 +70,10 @@
           <table class="table" id="datatable-online" cellspacing="0" width="100%">
             <thead>
             <tr>
-              <th>Customer Name</th>
-
+              <th>Customer</th>
+              <th>Department</th>
               <th>Device</th>
-              <th>Device IP</th>
+              <th>IP</th>
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>

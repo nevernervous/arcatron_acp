@@ -69,6 +69,7 @@ $(function () {
         bPaginate: false,
         bInfo: false,
         bFilter: false,
+        autoWidth: false,
         scrollY: "200px",
         scrollCollapse: true,
         columns: [
@@ -83,22 +84,23 @@ $(function () {
         ],
         ordering: false,
         columnDefs: [{
-            width: 'auto',
+            width: '130px',
+            targets: [3],
+        },{
+            width: '150px',
+            targets: [4],
+        },{
+            width: '80px',
             targets: [5],
             sClass: 'text-center'
         },{
-            width: 'auto',
+            width: '80px',
             targets: [6],
             render: function (data, type, row) {
-                if (data === 0)
-                    return 'ONLINE';
-                if (data === 1)
-                    return 'OFFLINE';
-                else
-                    return 'PACKET LOSS'
+                return 'ONLINE';
             }
         },{
-            width: 'auto',
+            width: '70px',
             targets: [7],
             render: function (data, type, row) {
                 return `
@@ -125,6 +127,10 @@ $(function () {
         bPaginate: false,
         bInfo: false,
         bFilter: false,
+        scrollY: 200,
+        autoWidth: false,
+        bAutoWidth: false,
+        scrollCollapse: true,
         columns: [
             {data: 'customer.name'},
             {data: 'department_name'},
@@ -137,26 +143,27 @@ $(function () {
         ],
         ordering: false,
         columnDefs: [{
-            width: 'auto',
+            width: '130px',
+            targets: [3],
+        },{
+            width: '150px',
+            targets: [4],
+        },{
+            width: '80px',
             targets: [5],
             sClass: 'text-center'
         },{
-            width: 'auto',
+            width: '80px',
             targets: [6],
             render: function (data, type, row) {
-                if (data === 0)
-                    return 'ONLINE';
-                if (data === 1)
-                    return 'OFFLINE';
-                else
-                    return 'PACKET LOSS'
+                return 'OFFLINE';
             }
         },{
-            width: 'auto',
+            width: '70px',
             targets: [7],
             render: function (data, type, row) {
                 return `
-                        <button type="button" class="btn btn-primary" onclick="ack(${data})">ACK</button>  
+                        <button type="button" class="btn btn-sm btn-primary" onclick="ack(${data})">ACK</button>  
                     `
             },
         }],
@@ -179,6 +186,9 @@ $(function () {
         bPaginate: false,
         bInfo: false,
         bFilter: false,
+        autoWidth: false,
+        scrollY: "200px",
+        scrollCollapse: true,
         columns: [
             {data: 'customer.name'},
             {data: 'department_name'},
@@ -191,22 +201,23 @@ $(function () {
         ],
         ordering: false,
         columnDefs: [{
-            width: 'auto',
+            width: '130px',
+            targets: [3],
+        },{
+            width: '150px',
+            targets: [4],
+        },{
+            width: '80px',
             targets: [5],
             sClass: 'text-center'
         },{
-            width: 'auto',
+            width: '80px',
             targets: [6],
             render: function (data, type, row) {
-                if (data === 0)
-                    return 'ONLINE';
-                if (data === 1)
-                    return 'OFFLINE';
-                else
-                    return 'PACKET LOSS'
+                return 'PACKET LOSS'
             }
         },{
-            width: 'auto',
+            width: '70px',
             targets: [7],
             render: function (data, type, row) {
                 return `

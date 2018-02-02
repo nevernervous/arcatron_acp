@@ -25,7 +25,7 @@
 
   @yield('style')
 </head>
-<body>
+<body class="sidebar-xs">
   @if (Auth::check())
     @include('layouts.partials.navbar')
   @endif

@@ -46,3 +46,48 @@
 .navigation>li.active>a {
     background-color: red;
 }
+
+.live .panel-body {
+    padding: 0px;
+}
+
+.live .panel-body .datatable-header{
+    display:none;
+}
+
+.live .panel-body .datatable-footer{
+    display:none;
+}
+
+.live table>thead>tr>th {
+    max-width: 100%;
+    padding: 5px 0px 5px 10px;
+    white-space: normal!important;
+}
+
+.live table>tbody>tr>td {
+    padding: 6px 0px 5px 10px;
+    white-space: normal!important;;
+}
+
+.collapse-icon {
+    position: fixed;
+    bottom: 0;
+    align-items: center;
+    width: 260px;
+}
+
+.uncollapse-icon {
+    width: 56px;
+    position: fixed;
+    bottom: 0;
+    display: none !important;
+}
+
+.sidebar-xs .collapse-icon {
+    display: none !important;;
+}
+
+.sidebar-xs .uncollapse-icon {
+    display: block !important;;
+}
