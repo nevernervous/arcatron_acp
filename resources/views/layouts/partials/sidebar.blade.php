@@ -5,7 +5,7 @@
     <div class="sidebar-user">
       <div class="category-content">
         <div class="media">
-          <a href="#" class="media-left"><img src="{{ asset('images/user.png') }}" class="img-circle img-sm" alt=""></a>
+          <a href="{{ route('showProfile') }}" class="media-left"><img src="{{ asset('images/user.png') }}" class="img-circle img-sm" alt=""></a>
           <div class="media-body">
             <span class="media-heading text-semibold">{{ Auth::user()->name }}</span>
             <div class="text-size-mini text-muted">
@@ -58,9 +58,10 @@
             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-switch2"></i>Logout</a>
           </li>
           <li class="">
-            <a class="collapse-icon sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-arrow-left15"></i> Collapse sidebar</a></li>
+            <a class="collapse-icon sidebar-control sidebar-main-toggle hidden-xs"><i class="fa fa-angle-double-left"></i> <div>Collapse sidebar</div></a>
+          </li>
           <li class="">
-            <a class="uncollapse-icon sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-arrow-right15"></i></a>
+            <a class="uncollapse-icon sidebar-control sidebar-main-toggle hidden-xs"><i class="fa fa-angle-double-right"></i></a>
           </li>
         </ul>
       </div>

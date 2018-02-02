@@ -76,6 +76,20 @@
     align-items: center;
     width: 260px;
 }
+.collapse-icon  i {
+    font-size: 2em;
+}
+.uncollapse-icon i {
+    font-size: 2em;
+}
+
+.collapse-icon div {
+    padding-top: 5px;
+}
+
+.uncollapse-icon div {
+    padding-top: 5px;
+}
 
 .uncollapse-icon {
     width: 56px;
