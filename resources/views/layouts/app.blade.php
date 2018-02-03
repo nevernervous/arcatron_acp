@@ -37,6 +37,7 @@
       @endif
       <div class="content-wrapper">
         @yield('content')
+        @include('layouts.partials.footer')
       </div>
 
     </div>

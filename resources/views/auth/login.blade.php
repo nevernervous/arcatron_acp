@@ -27,7 +27,18 @@
                 </div>
 
                 <div class="form-group has-feedback has-feedback-left">
-                  <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required="required" autofocus>
+                  <input type="text" class="form-control" placeholder="Customer Name" name="customer" value="{{ old('customer') }}" autofocus>
+                  <div class="form-control-feedback">
+                    <i class="icon-user text-muted"></i>
+                  </div>
+                  @if ($errors->has('customer'))
+                    <label id="customer-error" class="validation-error-label" for="customer">
+                      {{ $errors->first('customer') }}
+                    </label>
+                  @endif
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                  <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required="required">
                   <div class="form-control-feedback">
                     <i class="icon-mail5 text-muted"></i>
                   </div>

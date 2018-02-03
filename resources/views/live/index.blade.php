@@ -16,8 +16,8 @@
     <div class="row">
       <div class="panel panel-white live">
         <div class="panel-heading">
-          <h6 class="panel-title">OFFLINE Devices</h6>
-          <div style="margin-left: 20px">
+          <h6 class="panel-title" style="display: inline">OFFLINE Devices</h6>
+          <div style="margin-left: 20px; display: inline">
             <span style="margin-right: 10px">Today: <span id="offline_today" class="badge badge-primary">0</span></span>
             <span style="margin-right: 10px">Week: <span id="offline_week" class="badge badge-success">0</span></span>
             <span style="margin-right: 10px">Month: <span id="offline_month" class="badge badge-info">0</span></span>
@@ -44,9 +44,9 @@
 
     <div class="row">
       <div class="panel panel-white live">
-        <div class="panel-heading">
-          <h6 class="panel-title">PACKET LOSS Devices</h6>
-          <div style="margin-left: 20px">
+        <div class="panel-heading" >
+          <h6 class="panel-title" style="display: inline">PACKET LOSS Devices</h6>
+          <div style="margin-left: 20px; display: inline">
             <span style="margin-right: 10px">Today: <span id="packet_today" class="badge badge-primary">0</span></span>
             <span style="margin-right: 10px">Week: <span id="packet_week" class="badge badge-success">0</span></span>
             <span style="margin-right: 10px">Month: <span id="packet_month" class="badge badge-info">0</span></span>
@@ -73,13 +73,13 @@
 
     <div class="row">
       <div class="panel panel-white live">
-        <div class="panel-heading">
-          <h6 class="panel-title">ONLINE Devices</h6>
-          <div style="margin-left: 20px">
-            <span style="margin-right: 10px">Today: <span id="online_today" class="badge badge-primary">0</span></span>
-            <span style="margin-right: 10px">Week: <span id="online_week" class="badge badge-success">0</span></span>
-            <span style="margin-right: 10px">Month: <span id="online_month" class="badge badge-info">0</span></span>
-          </div>
+        <div class="panel-heading" >
+            <h6 class="panel-title" style="display:inline;">ONLINE Devices</h6>
+            <div style="margin-left: 20px; display: inline">
+              <span style="margin-right: 10px">Today: <span id="online_today" class="badge badge-primary">0</span></span>
+              <span style="margin-right: 10px">Week: <span id="online_week" class="badge badge-success">0</span></span>
+              <span style="margin-right: 10px">Month: <span id="online_month" class="badge badge-info">0</span></span>
+            </div>
         </div>
         <div class="panel-body">
           <table class="table" id="datatable-online" cellspacing="0" width="100%">
@@ -107,7 +107,6 @@
         </div>
       </div>
     </div>
-
   </div>
 @endsection
 

@@ -105,3 +105,15 @@
 .sidebar-xs .uncollapse-icon {
     display: block !important;;
 }
+
+.footer {
+    width: 100%;
+    background-color: #263238;
+    text-align: center;
+    height: 40px;
+    bottom: 0px;
+}
+
+body {
+    overflow-x: hidden;
+}
