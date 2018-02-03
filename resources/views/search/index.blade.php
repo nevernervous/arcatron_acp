@@ -17,12 +17,14 @@
       <form method="POST" action="{{ route('postSearch') }}">
         {{ csrf_field() }}
         <div class="row">
+          @if (Auth::user()->hasRole('admin'))
           <div class="col-md-2">
             <div class="form-group">
               <label>Customer Name</label>
-              <input type="text" class="form-control" placeholder="" name="cf" value="{{ $cf or '' }}">
+              <input type="text" class="form-control" placeholder="E.g: John" name="cf" value="{{ $cf or '' }}">
             </div>
           </div>
+          @endif
           <div class="col-md-2">
             <div class="form-group">
               <label >Device Name</label>
