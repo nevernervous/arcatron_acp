@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\LiveStatus;
+use App\Models\DeviceStatus;
 use App\Models\Logs;
 
 class LiveController extends Controller
@@ -37,13 +39,23 @@ class LiveController extends Controller
 //            $limit = 10;
 
 //        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
-        $a = $request->get('as');
+
+        $as = $request->get('as');
+        $today = DeviceStatus::where('alarm_state', '=', $as)
+            ->whereDate('date', DB::raw('CURDATE()'))->count();
+        $week = DeviceStatus::where('alarm_state', '=', $as)
+            ->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 WEEK)'))->count();
+        $month = DeviceStatus::where('alarm_state', '=', $as)
+            ->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->count();
         $statuses = LiveStatus::with('customer')->where('ack', '!=', true)
-            ->where('alarm_state', '=', $request->get('as'))
+            ->where('alarm_state', '=', $as)
             ->orderBy('date', 'desc')->get();
         return response()->json([
             'status' => 'success',
-            'data' => $statuses
+            'today'  => $today,
+            'week'   => $week,
+            'month'  => $month,
+            'data'   => $statuses
         ]);
     }
 

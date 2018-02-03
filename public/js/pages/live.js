@@ -64,7 +64,14 @@ $(function () {
     });
 
     onlineTable = $('#datatable-online').dataTable({
-        ajax: 'live/status?as=0',
+        ajax: {
+            url: 'live/status?as=0',
+            complete: function (data) {
+                $('#online_today').text(data.responseJSON.today);
+                $('#online_week').text(data.responseJSON.week);
+                $('#online_month').text(data.responseJSON.month);
+            }
+        },
         bLengthChange: false,
         bPaginate: false,
         bInfo: false,
@@ -122,7 +129,14 @@ $(function () {
     });
 
     offlineTable = $('#datatable-offline').dataTable({
-        ajax: 'live/status?as=1',
+        ajax: {
+            url: 'live/status?as=1',
+            complete: function (data) {
+                $('#offline_today').text(data.responseJSON.today);
+                $('#offline_week').text(data.responseJSON.week);
+                $('#offline_month').text(data.responseJSON.month);
+            }
+        },
         bLengthChange: false,
         bPaginate: false,
         bInfo: false,
@@ -181,7 +195,14 @@ $(function () {
     });
 
     packetLossTable = $('#datatable-packet-loss').dataTable({
-        ajax: 'live/status?as=2',
+        ajax: {
+            url: 'live/status?as=2',
+            complete: function (data) {
+                $('#packet_today').text(data.responseJSON.today);
+                $('#packet_week').text(data.responseJSON.week);
+                $('#packet_month').text(data.responseJSON.month);
+            }
+        },
         bLengthChange: false,
         bPaginate: false,
         bInfo: false,
