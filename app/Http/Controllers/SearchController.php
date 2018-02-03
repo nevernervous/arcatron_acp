@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\DeviceStatus;
 use Log;
+use Cookie;
+use App\Models\Customer;
 
 class SearchController extends Controller
 {
@@ -33,6 +35,7 @@ class SearchController extends Controller
     }
 
     public function postSearch(Request $request) {
+        $user = Auth::user();
         $statuses = DeviceStatus::orderBy('id', 'desc');
 
         if ($request->has('dn')) {
@@ -51,9 +54,13 @@ class SearchController extends Controller
             $statuses = $statuses->where('alarm_state', '=', $request->get('as'));
         }
 
-//        if ($request->has('cf')) {
-//            $statuses = $statuses->where('customer_id', '=', $request->get('as'));
-//        }
+
+        if (!$user->hasRole('admin')) {
+            $statuses = $statuses->where('customer_id', '=', Cookie::get('cf'));
+        } else if ($request->has('cf')) {
+            $customer = Customer::where('name', '=', $request->get('cf'))->first();
+            $statuses = $statuses->where('customer_id', '=', $customer ? $customer->id : null);
+        }
 
         $statuses = $statuses->get();
 
