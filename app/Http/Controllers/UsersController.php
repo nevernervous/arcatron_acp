@@ -99,7 +99,7 @@ class UsersController extends Controller
 
             if ($request->get('logs_page') === 'on')
                 $user->logs_access = true;
-            else
+            else if (!$user->hasRole('admin'))
                 $user->logs_access = false;
 
             $user->update();

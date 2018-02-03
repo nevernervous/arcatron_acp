@@ -100,7 +100,6 @@
         </div>
       </div>
     </div>
-    @include('layouts.partials.footer')
   </div>
 @endsection
 

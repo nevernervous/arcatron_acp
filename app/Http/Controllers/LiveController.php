@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\LiveStatus;
 use App\Models\DeviceStatus;
 use App\Models\Logs;
+use Illuminate\Support\Facades\Cookie;
 
 class LiveController extends Controller
 {
@@ -41,13 +42,36 @@ class LiveController extends Controller
 //        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)->orderBy('id', 'desc')->limit($limit)->get();
 
         $as = $request->get('as');
+        $deviceStatuses =
+        $liveStatuses = LiveStatus::with('customer');
+        $customer_id = Cookie::get('cf');
+        $user = Auth::user();
+        if (!$user->hasRole('admin')) {
+            $liveStatuses = $liveStatuses->where('customer_id', $customer_id);
+        }
+        
         $today = DeviceStatus::where('alarm_state', '=', $as)
-            ->whereDate('date', DB::raw('CURDATE()'))->count();
+            ->where(function ($query) use ($customer_id, $user) {
+                if (!$user->hasRole('admin')) {
+                    $query->where('customer_id', $customer_id);
+                }
+            })->whereDate('date', DB::raw('CURDATE()'))->count();
+
         $week = DeviceStatus::where('alarm_state', '=', $as)
-            ->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 WEEK)'))->count();
+            ->where(function ($query) use ($customer_id, $user) {
+                if (!$user->hasRole('admin')) {
+                    $query->where('customer_id', $customer_id);
+                }
+            })->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 WEEK)'))->count();
+
         $month = DeviceStatus::where('alarm_state', '=', $as)
-            ->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->count();
-        $statuses = LiveStatus::with('customer')->where('ack', '!=', true)
+            ->where(function ($query) use ($customer_id, $user) {
+                if (!$user->hasRole('admin')) {
+                    $query->where('customer_id', $customer_id);
+                }
+            })->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->count();
+
+        $liveStatuses = $liveStatuses->where('ack', '!=', true)
             ->where('alarm_state', '=', $as)
             ->orderBy('date', 'desc')->get();
         return response()->json([
@@ -55,7 +79,7 @@ class LiveController extends Controller
             'today'  => $today,
             'week'   => $week,
             'month'  => $month,
-            'data'   => $statuses
+            'data'   => $liveStatuses
         ]);
     }
 
