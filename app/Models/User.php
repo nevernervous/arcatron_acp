@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -40,5 +41,9 @@ class User extends Authenticatable
 
     public function customers() {
         return $this->belongsToMany('App\Models\Customer', 'user_customer');
+    }
+
+    public function getCreatedAtAttribute($value) {
+        return Carbon::parse($value)->format('d/m/Y H:i:s');
     }
 }

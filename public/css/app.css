@@ -41,7 +41,7 @@
 }
 
 .table th { font-size: 15px; }
-.table td { font-size: 14px; }
+.table td { font-size: 15px; }
 
 .navigation>li.active>a {
     background-color: red;
