@@ -73,6 +73,7 @@ class LiveController extends Controller
 
         $liveStatuses = $liveStatuses->where('ack', '!=', true)
             ->where('alarm_state', '=', $as)
+            ->orderBy('critical_level', 'asc')
             ->orderBy('date', 'desc')->get();
         return response()->json([
             'status' => 'success',

@@ -105,7 +105,7 @@ $(function () {
             width: '130px',
             targets: [3],
         },{
-            width: '150px',
+            width: '160px',
             targets: [4],
         },{
             width: '80px',
@@ -193,7 +193,7 @@ $(function () {
             width: '130px',
             targets: [3],
         },{
-            width: '150px',
+            width: '160px',
             targets: [4],
         },{
             width: '80px',
@@ -280,7 +280,7 @@ $(function () {
             width: '130px',
             targets: [3],
         },{
-            width: '150px',
+            width: '160px',
             targets: [4],
         },{
             width: '80px',
