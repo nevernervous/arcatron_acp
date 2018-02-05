@@ -70,6 +70,16 @@ $(function () {
                 $('#online_today').text(data.responseJSON.today);
                 $('#online_week').text(data.responseJSON.week);
                 $('#online_month').text(data.responseJSON.month);
+                if (data.responseJSON.data.length === 0) {
+                    $('#datatable-online_wrapper').addClass('hide');
+                }
+                else {
+                    let wrapper = $('#datatable-online_wrapper');
+                    if (wrapper.hasClass('hide')) {
+                        wrapper.removeClass('hide');
+                        onlineTable.fnDraw();
+                    }
+                }
             }
         },
         bLengthChange: false,
@@ -135,6 +145,16 @@ $(function () {
                 $('#offline_today').text(data.responseJSON.today);
                 $('#offline_week').text(data.responseJSON.week);
                 $('#offline_month').text(data.responseJSON.month);
+                if (data.responseJSON.data.length === 0) {
+                    $('#datatable-offline_wrapper').addClass('hide');
+                }
+                else {
+                    let wrapper = $('#datatable-offline_wrapper');
+                    if (wrapper.hasClass('hide')) {
+                        wrapper.removeClass('hide');
+                        offlineTable.fnDraw();
+                    }
+                }
             }
         },
         bLengthChange: false,
@@ -201,6 +221,16 @@ $(function () {
                 $('#packet_today').text(data.responseJSON.today);
                 $('#packet_week').text(data.responseJSON.week);
                 $('#packet_month').text(data.responseJSON.month);
+                if (data.responseJSON.data.length === 0) {
+                    $('#datatable-packet-loss_wrapper').addClass('hide');
+                }
+                else {
+                    let wrapper = $('#datatable-packet-loss_wrapper');
+                    if (wrapper.hasClass('hide')) {
+                        wrapper.removeClass('hide');
+                        packetLossTable.fnDraw();
+                    }
+                }
             }
         },
         bLengthChange: false,

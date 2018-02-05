@@ -33,7 +33,7 @@
 
 .sidebar-xs .header-highlight .navbar-header .navbar-brand {
     background-image: url("/acp/images/logo_white.png");
-    background-size: 50px;
+    background-size: 40px;
 }
 
 .sidebar-xs .header-highlight .navbar-header .navbar-brand>span {
@@ -121,4 +121,8 @@ body {
 
 .dataTables_empty {
     display:none;
+}
+
+.hide {
+    display: none;
 }
