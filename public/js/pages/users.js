@@ -88,9 +88,7 @@ $(function () {
         width: 'auto'
     });
 
-    // Style checkboxes and radios
     $('.styled').uniform();
-
 
     // Setup validation
     $("#new_user_form").validate({

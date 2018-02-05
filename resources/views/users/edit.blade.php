@@ -46,13 +46,11 @@
                 <div class="form-group">
                   <label class="control-label col-md-2">Page Access:</label>
                   <div class="col-md-10">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" class="styled"
-                               name="logs_page" {{ $user->logs_access ? 'checked' : ''  }}>
-                        Logs Page
-                      </label>
-                    </div>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" class="styled"
+                             name="logs_page" {{ $user->logs_access ? 'checked' : ''  }}>
+                      Logs Page
+                    </label>
                   </div>
                 </div>
                 @endif

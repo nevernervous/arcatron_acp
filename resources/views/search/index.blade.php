@@ -40,7 +40,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label class="control-label animate">Critical Level</label>
-              <select data-placeholder="Select a State..." class="select" name="cl">
+              <select data-placeholder="Select a State..." class="select-clear" name="cl">
                 <option></option>
                 <option value="1" {{$cl === '1' ? 'selected': ''}}>1</option>
                 <option value="2" {{$cl === '2' ? 'selected': ''}}>2</option>
@@ -53,11 +53,11 @@
           <div class="col-md-2">
             <div class="form-group">
               <label>Alarm State</label>
-              <select data-placeholder="Select a Level..." class="select" name="as">
+              <select data-placeholder="Select a Level..." class="select-clear" name="as">
                 <option></option>
                 <option value="0" {{$as === '0' ? 'selected': ''}}>ONLINE</option>
                 <option value="1" {{$as === '1' ? 'selected': ''}}>OFFLINE</option>
-                <option value="2" {{$as === '2' ? 'selected': ''}}>2</option>
+                <option value="2" {{$as === '2' ? 'selected': ''}}>PACKET LOSS</option>
               </select>
             </div>
           </div>
@@ -94,7 +94,7 @@
                   <td>{{$status->device_ip}}</td>
                   <td>{{$status->date}}</td>
                   <td>{{$status->critical_level}}</td>
-                  <td>{{$status->alarm_state === 0 ? 'ONLINE' : $status->alarm_state === 1 ? 'OFFLINE' : 'PACKET LOSS'}}</td>
+                  <td>{{$status->alarm_state == 0 ? 'ONLINE' : ($status->alarm_state == 1 ? 'OFFLINE' : 'PACKET LOSS')}}</td>
                 </tr>
               @endforeach
             </tbody>

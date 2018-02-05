@@ -2,7 +2,7 @@
 <div class="navbar navbar-default header-highlight" style="background: transparent; border: 0">
   <div class="navbar-header">
     <a class="navbar-brand" href="{{ route('showLive') }}">
-      <img src="{{ asset('images/logo.png') }}" alt="">
+      <img src="{{ asset('images/logo_white.png') }}" alt="">
       <span>Advanced Control Panel</span>
     </a>
 

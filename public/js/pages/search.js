@@ -88,13 +88,12 @@ $(function() {
         $(".form-group-material").children('.control-label.is-visible').removeClass('animate');
     });
 
-    $('.select').select2({
-        minimumResultsForSearch: Infinity
+
+    $('.select-clear').select2({
+        placeholder: "Select a State",
+        allowClear: true,
+        minimumResultsForSearch: -1
     });
-
-
-    // Select with search
-    $('.select-search').select2();
 
 
     // Fixed width. Single select
