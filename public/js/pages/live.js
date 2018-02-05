@@ -97,6 +97,7 @@ $(function () {
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},
+            {data: 'last_state'},
             {data: 'id'}
         ],
         ordering: false,
@@ -119,6 +120,17 @@ $(function () {
         },{
             width: '70px',
             targets: [7],
+            render: function (data, type, row) {
+                if (data === 0)
+                    return 'ONLINE';
+                if (data === 1)
+                    return 'OFFLINE';
+                else
+                    return 'PACKET LOSS';
+            }
+        },{
+            width: '70px',
+            targets: [8],
             render: function (data, type, row) {
                 return `
                         <button type="button" class="btn btn-primary" onclick="ack(${data})">ACK</button>  
@@ -173,6 +185,7 @@ $(function () {
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},
+            {data: 'last_state'},
             {data: 'id'}
         ],
         ordering: false,
@@ -195,6 +208,17 @@ $(function () {
         },{
             width: '70px',
             targets: [7],
+            render: function (data, type, row) {
+                if (data === 0)
+                    return 'ONLINE';
+                if (data === 1)
+                    return 'OFFLINE';
+                else
+                    return 'PACKET LOSS';
+            }
+        },{
+            width: '70px',
+            targets: [8],
             render: function (data, type, row) {
                 return `
                         <button type="button" class="btn btn-sm btn-primary" onclick="ack(${data})">ACK</button>  
@@ -248,6 +272,7 @@ $(function () {
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},
+            {data: 'last_state'},
             {data: 'id'}
         ],
         ordering: false,
@@ -270,6 +295,17 @@ $(function () {
         },{
             width: '70px',
             targets: [7],
+            render: function (data, type, row) {
+                if (data === 0)
+                    return 'ONLINE';
+                if (data === 1)
+                    return 'OFFLINE';
+                else
+                    return 'PACKET LOSS';
+            }
+        },{
+            width: '70px',
+            targets: [8],
             render: function (data, type, row) {
                 return `
                         <button type="button" class="btn btn-primary" onclick="ack(${data})">ACK</button>  
