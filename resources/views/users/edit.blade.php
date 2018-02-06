@@ -42,18 +42,31 @@
                     <input type="email" class="form-control" name="email" required value="{{ $user->email }}">
                   </div>
                 </div>
-                @if (!$user->hasRole('admin'))
                 <div class="form-group">
-                  <label class="control-label col-md-2">Page Access:</label>
+                  <label class="control-label col-md-2">Permission:</label>
                   <div class="col-md-10">
+                    <label class="checkbox-inline">
+                      <input type="checkbox" class="styled"
+                             name="live_page" {{ $user->live_access ? 'checked' : ''  }}>
+                      Live Page
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" class="styled"
+                             name="search_page" {{ $user->search_access ? 'checked' : ''  }}>
+                      Search Page
+                    </label>
                     <label class="checkbox-inline">
                       <input type="checkbox" class="styled"
                              name="logs_page" {{ $user->logs_access ? 'checked' : ''  }}>
                       Logs Page
                     </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" class="styled"
+                             name="ack" {{ $user->ack_access ? 'checked' : ''  }}>
+                      Ack
+                    </label>
                   </div>
                 </div>
-                @endif
                 <div class="form-group">
                   <div class="col-md-offset-2 col-md-10">
                     <button type="submit" class="btn btn-success">Update</button>

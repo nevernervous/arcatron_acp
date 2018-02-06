@@ -137,7 +137,7 @@ $(function () {
             targets: [9],
             render: function (data, type, row) {
                 return `
-                        <button type="button" class="btn btn-primary" onclick="ack(${data})">ACK</button>  
+                        <button type="button" class="btn btn-primary ack" onclick="ack(${data})">ACK</button>  
                     `
             },
         }],
@@ -229,7 +229,7 @@ $(function () {
             targets: [9],
             render: function (data, type, row) {
                 return `
-                        <button type="button" class="btn btn-sm btn-primary" onclick="ack(${data})">ACK</button>  
+                        <button type="button" class="btn btn-sm btn-primary ack" onclick="ack(${data})">ACK</button>  
                     `
             },
         }],
@@ -320,7 +320,7 @@ $(function () {
             targets: [9],
             render: function (data, type, row) {
                 return `
-                        <button type="button" class="btn btn-primary" onclick="ack(${data})">ACK</button>  
+                        <button type="button" class="btn btn-primary ack" onclick="ack(${data})">ACK</button>  
                     `
             },
         }],

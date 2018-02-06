@@ -126,3 +126,11 @@ body {
 .hide {
     display: none;
 }
+
+.ack {
+    display: none;
+}
+
+.ack_allowed .ack {
+    display: block;
+}

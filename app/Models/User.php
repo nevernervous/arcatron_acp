@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function getCreatedAtAttribute($value) {
         return Carbon::parse($value)->format('d/m/Y H:i:s');
     }
+
+    public function acks() {
+        return $this->belongsToMany('App\Models\LiveStatus', 'user_ack','user_id', 'live_id');
+    }
 }

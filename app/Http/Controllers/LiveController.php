@@ -71,8 +71,10 @@ class LiveController extends Controller
                 }
             })->whereDate('date', '>=', DB::raw('DATE_SUB(NOW(), INTERVAL 1 MONTH)'))->count();
 
-        $liveStatuses = $liveStatuses->where('ack', '!=', true)
-            ->where('alarm_state', '=', $as)
+        $ackedList = $user->acks()->pluck('id')->toArray();
+
+        $liveStatuses = $liveStatuses->where('alarm_state', '=', $as)
+            ->whereNotIn('id', $ackedList)
             ->orderBy('critical_level', 'asc')
             ->orderBy('date', 'desc')->get();
         return response()->json([
@@ -80,20 +82,26 @@ class LiveController extends Controller
             'today'  => $today,
             'week'   => $week,
             'month'  => $month,
-            'data'   => $liveStatuses
+            'data'   => $liveStatuses,
+            'ack'    => $user->ack_access,
         ]);
     }
 
     public function ack(Request $request) {
-        $id = $request->query('id');
+        $user = Auth::user();
+        if (!$user->ack_access) {
+            return response()->json([
+                'status' => 'fail',
+            ]);
+        }
 
+        $id = $request->query('id');
         try {
-            $status = LiveStatus::find($id);
-            $status->ack = true;
-            $status->save();
+            $status = LiveStatus::findOrFail($id);
+            $user->acks()->attach($id);
 
             $log = new Logs();
-            $log->user_id = Auth::user()->id;
+            $log->user_id = $user->id;
             $log->action = 'ACK';
             $log->description = 'Acknowledged ' . $status->device_name . '.';
             $log->ip = $request->ip();

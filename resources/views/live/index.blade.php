@@ -12,7 +12,7 @@
     {{--</div>--}}
   {{--</div>--}}
 
-  <div class="content" style="margin-top: -48px">
+  <div class="content {{ Auth::user()->ack_access ? 'ack_allowed' : '' }}" style="margin-top: -48px">
     <div class="row">
       <div class="panel panel-white live">
         <div class="panel-heading">
@@ -36,7 +36,9 @@
               <th>Alarm State</th>
               <th>Last State</th>
               <th>Last Time</th>
+              @if (Auth::user()->ack_access)
               <th>ACK</th>
+              @endif
             </tr>
             </thead>
           </table>
@@ -67,7 +69,9 @@
               <th>Alarm State</th>
               <th>Last State</th>
               <th>Last Time</th>
-              <th>ACK</th>
+              @if (Auth::user()->ack_access)
+                <th>ACK</th>
+              @endif
             </tr>
             </thead>
           </table>
@@ -98,7 +102,9 @@
               <th>Alarm State</th>
               <th>Last State</th>
               <th>Last Time</th>
-              <th>ACK</th>
+              @if (Auth::user()->ack_access)
+                <th>ACK</th>
+              @endif
             </tr>
             </thead>
           </table>

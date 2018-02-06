@@ -24,4 +24,8 @@ class LiveStatus extends Model
     public function getLastStateDateAttribute($value) {
         return Carbon::parse($value)->format('d/m/Y H:i:s');
     }
+
+    public function users() {
+        return $this->belongsToMany('App\Models\User', 'user_ack', 'live_id', 'user_id');
+    }
 }

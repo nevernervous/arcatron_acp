@@ -99,8 +99,23 @@ class UsersController extends Controller
 
             if ($request->get('logs_page') === 'on')
                 $user->logs_access = true;
-            else if (!$user->hasRole('admin'))
+            else
                 $user->logs_access = false;
+
+            if ($request->get('live_page') === 'on')
+                $user->live_access = true;
+            else
+                $user->live_access = false;
+
+            if ($request->get('search_page') === 'on')
+                $user->search_access = true;
+            else
+                $user->search_access = false;
+
+            if ($request->get('ack') === 'on')
+                $user->ack_access = true;
+            else
+                $user->ack_access = false;
 
             $user->update();
             $message = 'User successfully updated.';
