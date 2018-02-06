@@ -50,10 +50,12 @@ class DeviceStatusAPIController extends Controller
                 $liveStatus->department_name = $status[2];
                 $liveStatus->device_name = $status[3];
                 $liveStatus->date = Carbon::createFromFormat('m/d/Y H:i:s', $status[4]);
+                $liveStatus->last_state_date = Carbon::createFromFormat('m/d/Y H:i:s', $status[4]);
                 $liveStatus->critical_level = substr($status[5], 3);
                 $liveStatus->alarm_state = substr($status[6], 3);
                 $liveStatus->last_state = substr($status[6], 3);
             }else {
+                $liveStatus->last_state_date = $liveStatus->date;
                 $liveStatus->date = Carbon::createFromFormat('m/d/Y H:i:s', $status[4]);
                 $liveStatus->critical_level = substr($status[5], 3);
                 $liveStatus->last_state = $liveStatus->alarm_state;

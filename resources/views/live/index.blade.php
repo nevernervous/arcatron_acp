@@ -35,6 +35,7 @@
               <th>Critical Level</th>
               <th>Alarm State</th>
               <th>Last State</th>
+              <th>Last Time</th>
               <th>ACK</th>
             </tr>
             </thead>
@@ -65,6 +66,7 @@
               <th>Critical Level</th>
               <th>Alarm State</th>
               <th>Last State</th>
+              <th>Last Time</th>
               <th>ACK</th>
             </tr>
             </thead>
@@ -95,6 +97,7 @@
               <th>Critical Level</th>
               <th>Alarm State</th>
               <th>Last State</th>
+              <th>Last Time</th>
               <th>ACK</th>
             </tr>
             </thead>

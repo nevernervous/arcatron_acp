@@ -20,4 +20,8 @@ class LiveStatus extends Model
     public function getDateAttribute($value) {
         return Carbon::parse($value)->format('d/m/Y H:i:s');
     }
+
+    public function getLastStateDateAttribute($value) {
+        return Carbon::parse($value)->format('d/m/Y H:i:s');
+    }
 }
