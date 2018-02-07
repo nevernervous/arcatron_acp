@@ -34,8 +34,6 @@
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
-              <th>Last State</th>
-              <th>Last Time</th>
               @if (Auth::user()->ack_access)
               <th>ACK</th>
               @endif
@@ -67,8 +65,6 @@
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
-              <th>Last State</th>
-              <th>Last Time</th>
               @if (Auth::user()->ack_access)
                 <th>ACK</th>
               @endif
