@@ -17,6 +17,11 @@ let showLess = function () {
     onlineTable.api().ajax.reload();
 };
 
+console.log($(window).height());
+let offlineTableHeight = ($(window).height() - 150 - 453) / 2;
+let packetLossTableHieght = ($(window).height() - 150 - 453) / 2;
+console.log(offlineTableHeight );
+
 let ack = function (id) {
     $.get('live/ack?id=' + id, function (data) {
         onlineTable.api().ajax.reload();
@@ -87,7 +92,7 @@ $(function () {
         bInfo: false,
         bFilter: false,
         autoWidth: false,
-        scrollY: "200px",
+        scrollY: 150,
         scrollCollapse: true,
         columns: [
             {data: 'customer.name'},
@@ -177,7 +182,7 @@ $(function () {
         bPaginate: false,
         bInfo: false,
         bFilter: false,
-        scrollY: 200,
+        scrollY: offlineTableHeight,
         autoWidth: false,
         bAutoWidth: false,
         scrollCollapse: true,
@@ -227,6 +232,13 @@ $(function () {
             } else if( data.alarm_state === 2 ) {
                 $(row).addClass('color-yellow');
             }
+        },
+        fnDrawCallback : function (oSettings) {
+            let height = $('#datatable-offline_wrapper div .dataTables_scrollBody').height();
+            if (height < offlineTableHeight) {
+                let headerHeight = height === 0 ? 57 : 0;
+                $('#datatable-packet-loss_wrapper div .dataTables_scrollBody').css('max-height', offlineTableHeight + packetLossTableHieght - height + headerHeight + 'px');
+            }
         }
     });
 
@@ -254,7 +266,7 @@ $(function () {
         bInfo: false,
         bFilter: false,
         autoWidth: false,
-        scrollY: "200px",
+        scrollY: offlineTableHeight,
         scrollCollapse: true,
         columns: [
             {data: 'customer.name'},
@@ -301,6 +313,13 @@ $(function () {
                 $(row).addClass('color-orange');
             } else if( data.alarm_state === 2 ) {
                 $(row).addClass('color-yellow');
+            }
+        },
+        fnDrawCallback : function (oSettings) {
+            let height = $('#datatable-packet-loss_wrapper div .dataTables_scrollBody').height();
+            if (height < packetLossTableHieght) {
+                let headerHeight = height === 0 ? 57 : 0;
+                $('#datatable-offline_wrapper div .dataTables_scrollBody').css('max-height', offlineTableHeight + packetLossTableHieght - height + headerHeight + 'px');
             }
         }
     });

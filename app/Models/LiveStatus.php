@@ -7,7 +7,6 @@ use Carbon\Carbon;
 
 class LiveStatus extends Model
 {
-    public $timestamps = false;
 
     /**
      * The customer associated with device status
