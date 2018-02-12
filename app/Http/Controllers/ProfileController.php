@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Logs;
 use Hash;
 
 class ProfileController extends Controller
@@ -29,6 +30,13 @@ class ProfileController extends Controller
             }
         }
 
+        $log = new Logs();
+        $log->user_id = $user->id;
+        $log->action = 'Profile Edit';
+        $log->description = 'Changed email.';
+        $log->ip = $request->ip();
+        $log->save();
+
         return response()->json([
             'status'  => 'success',
             'message' => 'Successfully updated.'
@@ -50,6 +58,13 @@ class ProfileController extends Controller
                 'message' => 'Password is not correct.'
             ]);
         }
+
+        $log = new Logs();
+        $log->user_id = $user->id;
+        $log->action = 'Profile Edit';
+        $log->description = 'Changed password.';
+        $log->ip = $request->ip();
+        $log->save();
 
         return response()->json([
             'status'  => 'success',

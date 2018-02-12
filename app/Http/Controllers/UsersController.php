@@ -8,6 +8,8 @@ use App\Models\Role;
 use App\Models\Customer;
 use Hash;
 use Log;
+use Auth;
+use App\Models\Logs;
 
 class UsersController extends Controller
 {
@@ -52,6 +54,13 @@ class UsersController extends Controller
         $role= Role::where('name', $user_role)->first();
         $user->attachRole($role);
 
+        $log = new Logs();
+        $log->user_id = Auth::user()->id;
+        $log->action = 'User Create';
+        $log->description = 'Created new user: ' . $username;
+        $log->ip = $request->ip();
+        $log->save();
+
         return response()->json([
             'status'  => 'success',
             'message' => 'User successfully created.',
@@ -60,8 +69,16 @@ class UsersController extends Controller
     }
 
     public function postDeleteUser(Request $request) {
-        User::find($request->get('id'))->delete();
+        $user = User::find($request->get('id'))->first();
+        $username = $user->name;
+        $user->delete();
 
+        $log = new Logs();
+        $log->user_id = Auth::user()->id;
+        $log->action = 'User Delete';
+        $log->description = 'Deleted user( ' . $username .').';
+        $log->ip = $request->ip();
+        $log->save();
         return response()->json([
             'status'  => 'success',
             'message' => 'User successfully deleted.'
@@ -119,11 +136,24 @@ class UsersController extends Controller
 
             $user->update();
             $message = 'User successfully updated.';
+
+            $log = new Logs();
+            $log->user_id = Auth::user()->id;
+            $log->action = 'User Update';
+            $log->description = 'Updated user(' . $user->name . ').';
+            $log->ip = $request->ip();
+            $log->save();
         } else {
             $customers = $request->get('customers');
             $user->customers()->sync($customers);
             $user->update();
             $message = 'Successfully assigned.';
+            $log = new Logs();
+            $log->user_id = Auth::user()->id;
+            $log->action = 'Customer Assign';
+            $log->description = 'Assigned customers to user(' . $user->name . ').';
+            $log->ip = $request->ip();
+            $log->save();
         }
 
         return response()->json([

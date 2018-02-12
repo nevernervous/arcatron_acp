@@ -8,6 +8,7 @@ use App\Models\DeviceStatus;
 use Log;
 use Cookie;
 use App\Models\Customer;
+use App\Models\Logs;
 
 class SearchController extends Controller
 {
@@ -36,6 +37,14 @@ class SearchController extends Controller
 
     public function postSearch(Request $request) {
         $user = Auth::user();
+
+        $log = new Logs();
+        $log->user_id = $user->id;
+        $log->action = 'Search';
+        $log->description = 'Searched the logs.';
+        $log->ip = $request->ip();
+        $log->save();
+
         $statuses = DeviceStatus::orderBy('id', 'desc');
 
         if ($request->has('dn')) {
