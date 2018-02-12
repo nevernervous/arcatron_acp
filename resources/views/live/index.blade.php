@@ -14,7 +14,7 @@
 
   <div class="content {{ Auth::user()->ack_access ? 'ack_allowed' : '' }}" style="margin-top: -48px">
     <div class="row">
-      <div class="panel panel-white live">
+      <div class="panel panel-white live" style="margin-bottom: 10px">
         <div class="panel-heading">
           <h6 class="panel-title" style="display: inline">OFFLINE Devices</h6>
           <div style="margin-left: 20px; display: inline">
@@ -45,7 +45,7 @@
     </div>
 
     <div class="row">
-      <div class="panel panel-white live">
+      <div class="panel panel-white live" style="margin-bottom: 10px">
         <div class="panel-heading" >
           <h6 class="panel-title" style="display: inline">PACKET LOSS Devices</h6>
           <div style="margin-left: 20px; display: inline">
@@ -76,7 +76,7 @@
     </div>
 
     <div class="row">
-      <div class="panel panel-white live">
+      <div class="panel panel-white live" style="margin-bottom: 5px">
         <div class="panel-heading" >
             <h6 class="panel-title" style="display:inline;">ONLINE Devices</h6>
             <div style="margin-left: 20px; display: inline">
