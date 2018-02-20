@@ -60,12 +60,15 @@ class DeviceStatusAPIController extends Controller
                     $liveStatus->alarm_state = $deviceStatus->alarm_state;
                     $liveStatus->last_state = $deviceStatus->alarm_state;
                 }else {
-                    Log::info('updated');
-                    $liveStatus->last_state_date = Carbon::createFromFormat('d/m/Y H:i:s', $liveStatus->date);
-                    $liveStatus->date = $date;
-                    $liveStatus->critical_level = $deviceStatus->critical_level;
-                    $liveStatus->last_state = $liveStatus->alarm_state;
-                    $liveStatus->alarm_state = $deviceStatus->alarm_state;
+                    $last_state_date = Carbon::createFromFormat('d/m/Y H:i:s', $liveStatus->date);
+                    if ($date->gt($last_state_date)) {
+                        Log::info('updated');
+                        $liveStatus->last_state_date = $last_state_date;
+                        $liveStatus->date = $date;
+                        $liveStatus->critical_level = $deviceStatus->critical_level;
+                        $liveStatus->last_state = $liveStatus->alarm_state;
+                        $liveStatus->alarm_state = $deviceStatus->alarm_state;
+                    }
                 }
 
                 $liveStatus->save();
