@@ -15,6 +15,11 @@ Route::get('/', function () {
     return redirect()->route('showLive');
 });
 
+Route::get('/auto-login', [
+    'as'  => 'autoLogin',
+    'uses' => 'Auth\LoginController@autoLogin'
+]);
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {

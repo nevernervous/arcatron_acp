@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Customer;
 use Cookie;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -95,5 +96,28 @@ class LoginController extends Controller
         return redirect()->back()
             ->withInput($request->only($this->username(), 'customer', 'remember'))
             ->withErrors($errors);
+    }
+
+    public function autoLogin(Request $request)
+    {
+        $customer_name = $request->get('customer');
+        $customer = null;
+        $email = $request->get('email');
+        $user = User::where('email', '=', $email)->first();
+        if($user) {
+            if (!$user->hasRole('admin')) {
+                $customers = $user->customers()->pluck('name')->toArray();
+                if (!in_array($customer_name, $customers))
+                    return redirect('/');
+                else
+                    $customer = Customer::where('name', '=', $customer_name)->first();
+            }
+
+            if ($this->attemptLogin($request)) {
+                if ($customer)
+                    Cookie::queue('cf', $customer->id, 600000);
+                return $this->sendLoginResponse($request);
+            }
+        }
     }
 }

@@ -14,6 +14,15 @@ use Log;
 class DeviceStatusAPIController extends Controller
 {
     public function postDeviceStatus(Request $request) {
+        /*
+            0 => '192.168.91.17',
+            1 => 'CG',
+            2 => 'Palazzo Comunale',
+            3 => 'Ponte Radio',
+            4 => '03/26/2018 10:55:52',
+            5 => 'CL=1',
+            6 => 'AS=0',
+         */
         try{
             $data = $request->json()->all();
             $decryptedStatus = shell_exec("echo ".$data['status']."| openssl enc -aes-128-cbc -a -d -pass pass:". env('SECRET_KEY'));
