@@ -19,7 +19,7 @@
               {{ csrf_field() }}
               <div class="panel panel-body login-form">
                 <div class="text-center">
-                  <img src="{{ asset('images/logo_no_aura.png') }}" style="width: 100%">
+                  <img src="{{ asset('images/logo_no_aura.png') }}" style="width: 50%">
                   <h5 class="content-group">Login to your account
                     <small class="display-block">Your credentials</small>
                   </h5>
