@@ -57,6 +57,15 @@
           <li>
             <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="icon-switch2"></i>Logout</a>
           </li>
+          <li id="min">
+            <div id="hour" class="time" style="text-align: center; font-size: 30px;"></div>
+            <div id="minute" class="time" style="text-align: center; font-size: 30px;"></div>
+            <div id="month" class="time" style="text-align: center;"></div>
+            <div id="year" class="time" style="text-align: center;"></div>
+          </li>
+          <li id="full" class="time"></li>
+
+
           <li class="">
             <a class="collapse-icon sidebar-control sidebar-main-toggle hidden-xs"><i class="fa fa-angle-double-left"></i> <div>Collapse sidebar</div></a>
           </li>

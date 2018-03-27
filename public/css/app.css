@@ -99,11 +99,11 @@
 }
 
 .sidebar-xs .collapse-icon {
-    display: none !important;;
+    display: none !important;
 }
 
 .sidebar-xs .uncollapse-icon {
-    display: block !important;;
+    display: block !important;
 }
 
 .footer {
@@ -133,4 +133,25 @@ body {
 
 .ack_allowed .ack {
     display: block;
+}
+
+.time {
+    font-weight: 500;
+    color: rgba(255,255,255,.75)
+}
+
+#min {
+    display: none;
+}
+.sidebar-xs #min{
+    display: block !important;
+}
+
+#full {
+    padding: 12px 20px;
+    min-height: 44px;
+}
+
+.sidebar-xs #full{
+    display: none !important;
 }

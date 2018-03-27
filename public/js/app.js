@@ -58,4 +58,17 @@ $(function () {
             }
         }
     });
+
+    $.fn.dataTable.ext.errMode = 'none';
+
+    setInterval( function() {
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        $("#hour").html(( hours < 10 ? "0" : "" ) + hours);
+        $("#minute").html(( minutes < 10 ? "0" : "" ) + minutes);
+        $("#month").html(moment().format("MMM D"));
+        $("#year").html(moment().format("YYYY"));
+        $("#full").html(moment().format("MMMM Do YYYY, HH:mm:ss"));
+    },1000);
 });

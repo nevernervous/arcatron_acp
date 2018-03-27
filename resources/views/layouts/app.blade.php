@@ -58,6 +58,7 @@
 
   <script src="{{ asset('assets/js/core/app.js') }}"></script>
   <script src="{{ asset('assets/js/pages/layout_fixed_custom.js') }}"></script>
+  <script src="{{ asset(('assets/js/moment.js')) }}"></script>
   <!-- /theme JS files -->
 
   <script src="{{ asset('js/app.js') }}"></script>
