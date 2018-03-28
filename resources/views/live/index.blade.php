@@ -11,7 +11,6 @@
       {{--</div>--}}
     {{--</div>--}}
   {{--</div>--}}
-
   <div class="content {{ Auth::user()->ack_access ? 'ack_allowed' : '' }}" style="margin-top: -48px">
     <div class="row">
       <div class="panel panel-white live" style="margin-bottom: 10px">
@@ -117,6 +116,7 @@
       </div>
     </div>
   </div>
+  <audio id="beep" src="{{ asset('wav/beep.wav') }}" preload="auto"></audio>
 @endsection
 
 @section('script')

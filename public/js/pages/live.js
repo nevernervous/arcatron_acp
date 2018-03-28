@@ -3,6 +3,7 @@ let onlineTable;
 let offlineTable;
 let packetLossTable;
 let mutes = [];
+let offlines = [];
 let showMore = function () {
     limit += 10;
     $('#btn-show-less').toggleClass('collapse', limit <= 10);
@@ -19,6 +20,7 @@ let showLess = function () {
 
 let offlineTableHeight = ($(window).height() - 150 - 453) / 2;
 let packetLossTableHieght = ($(window).height() - 150 - 453) / 2;
+let beep = document.getElementById('beep');
 
 let ack = function (id) {
     $.get('live/ack?id=' + id, function (data) {
@@ -92,6 +94,7 @@ $(function () {
                         onlineTable.fnDraw();
                     }
                 }
+
                 return data.data;
             }
         },
@@ -175,8 +178,10 @@ $(function () {
                 $('#offline_week').text(data.week);
                 $('#offline_month').text(data.month);
                 mutes = data.mutes;
+                offlines = data.data;
                 if (data.data.length === 0) {
                     $('#datatable-offline_wrapper').addClass('hide');
+                    isBeep = false;
                 }
                 else {
                     let wrapper = $('#datatable-offline_wrapper');
@@ -252,6 +257,10 @@ $(function () {
                 $(row).addClass('color-orange');
             } else if( data.alarm_state === 2 ) {
                 $(row).addClass('color-yellow');
+            }
+
+            if (data.sound_alarm === 1) {
+                $(row).addClass('blink')
             }
         },
         fnDrawCallback : function (oSettings) {
@@ -351,7 +360,24 @@ $(function () {
         offlineTable.api().ajax.reload();
         packetLossTable.api().ajax.reload();
     }, 5000 );
+    setInterval(function () {
+        let isBeep = false;
+        for (let i = 0; i < offlines.length; i++) {
+            if (offlines[i].sound_alarm === 0 || offlines[i].sound_alarm === 3 || mutes.includes(offlines[i].id)) {
+                isBeep = isBeep || false;
+            }
+            else {
+                isBeep = isBeep || true;
+            }
+        }
+        if (isBeep)
+            playBeep();
+    }, 1000);
 
     // // Add placeholder to the datatable filter option
     // $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
 });
+
+function playBeep() {
+    beep.play();
+}
