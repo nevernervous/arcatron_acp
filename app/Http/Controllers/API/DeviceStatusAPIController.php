@@ -22,6 +22,7 @@ class DeviceStatusAPIController extends Controller
             4 => '03/26/2018 10:55:52',
             5 => 'CL=1',
             6 => 'AS=0',
+            7 => '0 | 1 | 2 | 3' sound alarm
          */
         try{
             $data = $request->json()->all();
@@ -50,6 +51,8 @@ class DeviceStatusAPIController extends Controller
                 $deviceStatus->date = $date;
                 $deviceStatus->critical_level = substr($status[5], 3);
                 $deviceStatus->alarm_state = substr($status[6], 3);
+                if (count($status) === 8)
+                    $deviceStatus->sound_alarm = $status[7];
                 $deviceStatus->save();
 
                 $liveStatus = LiveStatus::where('customer_id', '=', $customer->id)
@@ -68,6 +71,8 @@ class DeviceStatusAPIController extends Controller
                     $liveStatus->critical_level = $deviceStatus->critical_level;
                     $liveStatus->alarm_state = $deviceStatus->alarm_state;
                     $liveStatus->last_state = $deviceStatus->alarm_state;
+                    if (count($status) === 8)
+                        $liveStatus->sound_alarm = $status[7];
                 }else {
                     $last_state_date = Carbon::createFromFormat('d/m/Y H:i:s', $liveStatus->date);
                     if ($date->gt($last_state_date)) {
@@ -77,6 +82,8 @@ class DeviceStatusAPIController extends Controller
                         $liveStatus->critical_level = $deviceStatus->critical_level;
                         $liveStatus->last_state = $liveStatus->alarm_state;
                         $liveStatus->alarm_state = $deviceStatus->alarm_state;
+                        if (count($status) === 8)
+                            $liveStatus->sound_alarm = $status[7];
                     }
                 }
 

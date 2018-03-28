@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function acks() {
         return $this->belongsToMany('App\Models\LiveStatus', 'user_ack','user_id', 'live_id');
     }
+
+    public function mutes() {
+        return $this->belongsToMany('App\Models\LiveStatus', 'user_mute','user_id', 'live_id');
+    }
 }

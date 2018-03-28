@@ -2,7 +2,7 @@ let limit = 10;
 let onlineTable;
 let offlineTable;
 let packetLossTable;
-
+let mutes = [];
 let showMore = function () {
     limit += 10;
     $('#btn-show-less').toggleClass('collapse', limit <= 10);
@@ -17,10 +17,8 @@ let showLess = function () {
     onlineTable.api().ajax.reload();
 };
 
-console.log($(window).height());
 let offlineTableHeight = ($(window).height() - 150 - 453) / 2;
 let packetLossTableHieght = ($(window).height() - 150 - 453) / 2;
-console.log(offlineTableHeight );
 
 let ack = function (id) {
     $.get('live/ack?id=' + id, function (data) {
@@ -44,6 +42,15 @@ let ack = function (id) {
                 delay: 1000,
             });
         }
+    });
+};
+
+let mute = function (id) {
+    $.get('live/mute?id=' + id, function (data) {
+        // let icon = $('#mute' + id);
+        // let className = icon.attr('class');
+        // icon.attr('class', className === 'icon-bell2' ? 'icon-bell-cross': 'icon-bell2');
+        offlineTable.api().ajax.reload();
     });
 };
 
@@ -71,11 +78,11 @@ $(function () {
     onlineTable = $('#datatable-online').dataTable({
         ajax: {
             url: 'live/status?as=0',
-            complete: function (data) {
-                $('#online_today').text(data.responseJSON.today);
-                $('#online_week').text(data.responseJSON.week);
-                $('#online_month').text(data.responseJSON.month);
-                if (data.responseJSON.data.length === 0) {
+            dataSrc: function (data) {
+                $('#online_today').text(data.today);
+                $('#online_week').text(data.week);
+                $('#online_month').text(data.month);
+                if (data.data.length === 0) {
                     $('#datatable-online_wrapper').addClass('hide');
                 }
                 else {
@@ -85,6 +92,7 @@ $(function () {
                         onlineTable.fnDraw();
                     }
                 }
+                return data.data;
             }
         },
         bLengthChange: false,
@@ -162,11 +170,12 @@ $(function () {
     offlineTable = $('#datatable-offline').dataTable({
         ajax: {
             url: 'live/status?as=1',
-            complete: function (data) {
-                $('#offline_today').text(data.responseJSON.today);
-                $('#offline_week').text(data.responseJSON.week);
-                $('#offline_month').text(data.responseJSON.month);
-                if (data.responseJSON.data.length === 0) {
+            dataSrc : function (data) {
+                $('#offline_today').text(data.today);
+                $('#offline_week').text(data.week);
+                $('#offline_month').text(data.month);
+                mutes = data.mutes;
+                if (data.data.length === 0) {
                     $('#datatable-offline_wrapper').addClass('hide');
                 }
                 else {
@@ -176,6 +185,7 @@ $(function () {
                         offlineTable.fnDraw();
                     }
                 }
+                return data.data;
             }
         },
         bLengthChange: false,
@@ -194,6 +204,7 @@ $(function () {
             {data: 'date'},
             {data: 'critical_level'},
             {data: 'alarm_state'},
+            {data: 'id'},
             {data: 'id'}
         ],
         ordering: false,
@@ -214,8 +225,18 @@ $(function () {
                 return 'OFFLINE';
             }
         },{
-            width: '70px',
             targets: [7],
+            render: function (data, type, row) {
+                let iconClass = mutes.includes(data) ? 'icon-bell2' : 'icon-bell-cross';
+                return `
+                        <button type="button" class="btn btn-sm btn-primary button-icon" onclick="mute(${data})">
+                        <i id="mute${data}" class="${iconClass}"></i>
+                        </button>  
+                    `
+            },
+        },{
+            width: '70px',
+            targets: [8],
             render: function (data, type, row) {
                 return `
                         <button type="button" class="btn btn-sm btn-primary ack" onclick="ack(${data})">ACK</button>  
@@ -245,11 +266,11 @@ $(function () {
     packetLossTable = $('#datatable-packet-loss').dataTable({
         ajax: {
             url: 'live/status?as=2',
-            complete: function (data) {
-                $('#packet_today').text(data.responseJSON.today);
-                $('#packet_week').text(data.responseJSON.week);
-                $('#packet_month').text(data.responseJSON.month);
-                if (data.responseJSON.data.length === 0) {
+            dataSrc: function (data) {
+                $('#packet_today').text(data.today);
+                $('#packet_week').text(data.week);
+                $('#packet_month').text(data.month);
+                if (data.data.length === 0) {
                     $('#datatable-packet-loss_wrapper').addClass('hide');
                 }
                 else {
@@ -259,6 +280,7 @@ $(function () {
                         packetLossTable.fnDraw();
                     }
                 }
+                return data.data;
             }
         },
         bLengthChange: false,

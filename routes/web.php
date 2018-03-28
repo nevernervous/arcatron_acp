@@ -35,6 +35,10 @@ Route::group(['middleware' => ['auth']], function() {
         'as'   => 'ack',
         'uses' => 'LiveController@ack'
     ]);
+    Route::get('live/mute', [
+        'as'   => 'ack',
+        'uses' => 'LiveController@mute'
+    ]);
 
     Route::get('profile', [
         'as'   => 'showProfile',

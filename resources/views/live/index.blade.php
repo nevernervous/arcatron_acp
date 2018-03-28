@@ -34,6 +34,7 @@
               <th>Time</th>
               <th>Critical Level</th>
               <th>Alarm State</th>
+              <th>Mute</th>
               @if (Auth::user()->ack_access)
               <th>ACK</th>
               @endif

@@ -84,6 +84,7 @@ class LiveController extends Controller
             'month'  => $month,
             'data'   => $liveStatuses,
             'ack'    => $user->ack_access,
+            'mutes' => $user->mutes()->pluck('id')->toArray()
         ]);
     }
 
@@ -104,6 +105,39 @@ class LiveController extends Controller
             $log->user_id = $user->id;
             $log->action = 'ACK';
             $log->description = 'Acknowledged ' . $status->device_name . '.';
+            $log->ip = $request->ip();
+            $log->save();
+        }catch (\Exception $e) {
+            return response()->json([
+                'status' => 'fail'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
+
+    public function mute(Request $request) {
+        $user = Auth::user();
+        $id = $request->query('id');
+        try {
+            $mutes = $user->mutes();
+            $status = $mutes->find($id);
+            $log = new Logs();
+            if ($status == null) {
+                $mutes->attach($id);
+                $log->action = 'MUTE';
+                $status = LiveStatus::findOrFail($id);
+                $log->description = 'Muted ' . $status->device_name . '.';
+            }
+            else {
+                $mutes->detach($id);
+                $log->action = 'UNMUTE';
+                $log->description = 'Unmuted ' . $status->device_name . '.';
+            }
+
+            $log->user_id = $user->id;
             $log->ip = $request->ip();
             $log->save();
         }catch (\Exception $e) {
