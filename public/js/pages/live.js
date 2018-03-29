@@ -121,20 +121,20 @@ $(function () {
         columnDefs: [{
             width: '130px',
             targets: [3],
-        },{
+        }, {
             width: '160px',
             targets: [4],
-        },{
+        }, {
             width: '80px',
             targets: [5],
             sClass: 'text-center'
-        },{
+        }, {
             width: '80px',
             targets: [6],
             render: function (data, type, row) {
                 return 'ONLINE';
             }
-        },{
+        }, {
             width: '70px',
             targets: [7],
             render: function (data, type, row) {
@@ -145,10 +145,10 @@ $(function () {
                 else
                     return 'PACKET LOSS';
             }
-        },{
+        }, {
             width: '160px',
             targets: [8],
-        },{
+        }, {
             width: '70px',
             targets: [9],
             render: function (data, type, row) {
@@ -158,13 +158,13 @@ $(function () {
             },
         }],
         createdRow: function (row, data, dataIndex) {
-            if( data.alarm_state === 0 ){
+            if (data.alarm_state === 0) {
                 $(row).addClass('color-green');
-            } else if( data.alarm_state === 1 && data.critical_level ===  1 ){
+            } else if (data.alarm_state === 1 && data.critical_level === 1) {
                 $(row).addClass('color-red');
-            } else if( data.alarm_state === 1 && data.critical_level !==  1 ) {
+            } else if (data.alarm_state === 1 && data.critical_level !== 1) {
                 $(row).addClass('color-orange');
-            } else if( data.alarm_state === 2 ) {
+            } else if (data.alarm_state === 2) {
                 $(row).addClass('color-yellow');
             }
         }
@@ -173,7 +173,7 @@ $(function () {
     offlineTable = $('#datatable-offline').dataTable({
         ajax: {
             url: 'live/status?as=1',
-            dataSrc : function (data) {
+            dataSrc: function (data) {
                 $('#offline_today').text(data.today);
                 $('#offline_week').text(data.week);
                 $('#offline_month').text(data.month);
@@ -189,6 +189,17 @@ $(function () {
                         wrapper.removeClass('hide');
                         offlineTable.fnDraw();
                     }
+                }
+                let beeps = JSON.parse(localStorage.getItem("beeps"));
+                if (beeps) {
+                    let ids = data.data.map(e => e.id);
+                    for(let i = 0; i < beeps.length; i++) {
+                        if (!ids.includes(beeps[i])) {
+                            beeps.splice(i, 1);
+                            i--;
+                        }
+                    }
+                    localStorage.setItem("beeps", JSON.stringify(beeps));
                 }
                 return data.data;
             }
@@ -216,21 +227,22 @@ $(function () {
         columnDefs: [{
             width: '130px',
             targets: [3],
-        },{
+        }, {
             width: '160px',
             targets: [4],
-        },{
+        }, {
             width: '80px',
             targets: [5],
             sClass: 'text-center'
-        },{
+        }, {
             width: '80px',
             targets: [6],
             render: function (data, type, row) {
                 return 'OFFLINE';
             }
-        },{
+        }, {
             targets: [7],
+            width: '50px',
             render: function (data, type, row) {
                 let iconClass = mutes.includes(data) ? 'icon-bell2' : 'icon-bell-cross';
                 return `
@@ -239,7 +251,7 @@ $(function () {
                         </button>  
                     `
             },
-        },{
+        }, {
             width: '70px',
             targets: [8],
             render: function (data, type, row) {
@@ -249,21 +261,29 @@ $(function () {
             },
         }],
         createdRow: function (row, data, dataIndex) {
-            if( data.alarm_state === 0 ){
+            if (data.alarm_state === 0) {
                 $(row).addClass('color-green');
-            } else if( data.alarm_state === 1 && data.critical_level ===  1 ){
+            } else if (data.alarm_state === 1 && data.critical_level === 1) {
                 $(row).addClass('color-red');
-            } else if( data.alarm_state === 1 && data.critical_level !==  1 ) {
+            } else if (data.alarm_state === 1 && data.critical_level !== 1) {
                 $(row).addClass('color-orange');
-            } else if( data.alarm_state === 2 ) {
+            } else if (data.alarm_state === 2) {
                 $(row).addClass('color-yellow');
             }
-
             if (data.sound_alarm === 1) {
                 $(row).addClass('blink')
+            } else if (data.sound_alarm === 3) {
+                let beeps = JSON.parse(localStorage.getItem("beeps"));
+                if (!beeps)
+                    beeps = [];
+                if (!beeps.includes(data.id)) {
+                    beeps.push(data.id);
+                    localStorage.setItem("beeps", JSON.stringify(beeps));
+                    playBeep();
+                }
             }
         },
-        fnDrawCallback : function (oSettings) {
+        fnDrawCallback: function (oSettings) {
             let height = $('#datatable-offline_wrapper div .dataTables_scrollBody').height();
             if (height < offlineTableHeight) {
                 let headerHeight = height === 0 ? 57 : 0;
@@ -313,20 +333,20 @@ $(function () {
         columnDefs: [{
             width: '130px',
             targets: [3],
-        },{
+        }, {
             width: '160px',
             targets: [4],
-        },{
+        }, {
             width: '80px',
             targets: [5],
             sClass: 'text-center'
-        },{
+        }, {
             width: '80px',
             targets: [6],
             render: function (data, type, row) {
                 return 'PACKET LOSS'
             }
-        },{
+        }, {
             width: '70px',
             targets: [7],
             render: function (data, type, row) {
@@ -336,17 +356,17 @@ $(function () {
             },
         }],
         createdRow: function (row, data, dataIndex) {
-            if( data.alarm_state === 0 ){
+            if (data.alarm_state === 0) {
                 $(row).addClass('color-green');
-            } else if( data.alarm_state === 1 && data.critical_level ===  1 ){
+            } else if (data.alarm_state === 1 && data.critical_level === 1) {
                 $(row).addClass('color-red');
-            } else if( data.alarm_state === 1 && data.critical_level !==  1 ) {
+            } else if (data.alarm_state === 1 && data.critical_level !== 1) {
                 $(row).addClass('color-orange');
-            } else if( data.alarm_state === 2 ) {
+            } else if (data.alarm_state === 2) {
                 $(row).addClass('color-yellow');
             }
         },
-        fnDrawCallback : function (oSettings) {
+        fnDrawCallback: function (oSettings) {
             let height = $('#datatable-packet-loss_wrapper div .dataTables_scrollBody').height();
             if (height < packetLossTableHieght) {
                 let headerHeight = height === 0 ? 57 : 0;
@@ -355,11 +375,11 @@ $(function () {
         }
     });
 
-    setInterval( function () {
+    setInterval(function () {
         onlineTable.api().ajax.reload();
         offlineTable.api().ajax.reload();
         packetLossTable.api().ajax.reload();
-    }, 5000 );
+    }, 5000);
     setInterval(function () {
         let isBeep = false;
         for (let i = 0; i < offlines.length; i++) {
@@ -374,9 +394,10 @@ $(function () {
             playBeep();
     }, 1000);
 
-    // // Add placeholder to the datatable filter option
-    // $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
-});
+// // Add placeholder to the datatable filter option
+// $('.dataTables_filter input[type=search]').attr('placeholder', 'Type to filter...');
+})
+;
 
 function playBeep() {
     beep.play();
