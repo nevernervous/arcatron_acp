@@ -67,8 +67,8 @@ $(function () {
         var minutes = date.getMinutes();
         $("#hour").html(( hours < 10 ? "0" : "" ) + hours);
         $("#minute").html(( minutes < 10 ? "0" : "" ) + minutes);
-        $("#month").html(moment().format("MMM D"));
+        $("#month").html(moment().format("D MMM"));
         $("#year").html(moment().format("YYYY"));
-        $("#full").html(moment().format("MMMM Do YYYY, HH:mm:ss"));
+        $("#full").html(moment().format("Do MMMM YYYY, HH:mm:ss"));
     },1000);
 });
