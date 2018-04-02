@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('style')
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
   <div class="page-header">
     <div class="page-header-content">
@@ -18,7 +21,18 @@
         <h6 class="panel-title">Account</h6>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal ajax" method="POST" action="{{ route('postUpdateProfile') }}">
+        <div id="kv-avatar-errors-1" class="center-block" style="width:800px;display:none"></div>
+        <form class="form-horizontal ajax" method="POST" action="{{ route('postUpdateProfile') }}" enctype="multipart/form-data">
+          {{csrf_field()}}
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <div class="kv-avatar">
+                <div class="file-loading">
+                  <input id="avatar" name="avatar" type="file">
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="form-group">
             <label class="control-label col-md-2">User Name:</label>
             <div class="col-md-10">
@@ -36,7 +50,6 @@
               <button type="submit" class="btn btn-success">Update</button>
               <button type="button" class="btn btn-info" data-toggle="modal" data-target="#password_change_modal">Change Password</button>
             </div>
-
           </div>
         </form>
       </div>
@@ -96,5 +109,25 @@
 @section('script')
   <script src="{{ asset('assets/js/plugins/forms/validation/validate.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/notifications/sweet_alert.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
   <script src="{{ asset('js/pages/profile.js') }}"></script>
+  <script>
+      $("#avatar").fileinput({
+          overwriteInitial: true,
+          maxFileSize: 1500,
+          showClose: false,
+          showCaption: false,
+          browseLabel: '',
+          browseIcon: 'Change Avatar',
+          elErrorContainer: '#kv-avatar-errors-1',
+          msgErrorClass: 'alert alert-block alert-danger',
+          defaultPreviewContent: '<img src="{{ asset(Auth::user()->avatar) }}" alt="Your Avatar">',
+          layoutTemplates: {
+              main2: '{preview} ' + '{browse}',
+              footer: ''
+
+          },
+          allowedFileExtensions: ["jpg", "png", "gif"]
+      });
+  </script>
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Logs;
 use Hash;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -26,21 +27,35 @@ class ProfileController extends Controller
                 ]);
             } else {
                 $user->email = $email;
-                $user->save();
             }
         }
 
+        $res = array();
+
+        $res['status']  = 'success';
+        $res['message'] = 'Successfully updated.';
+
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $avatarPath = 'uploads/avatars/';
+            $fileName = date('m_d_Y_h_m_s.') . $file->extension();
+            if (!file_exists($avatarPath)) {
+                mkdir($avatarPath, 0777, true);
+            }
+//            $file->move($avatarPath, $fileName);
+            Image::make($file)->resize(225, 225)->save(public_path($avatarPath.$fileName));
+            $user->avatar = $avatarPath . $fileName;
+            $res['reload'] = true;
+        }
+        $user->save();
         $log = new Logs();
         $log->user_id = $user->id;
         $log->action = 'Profile Edit';
-        $log->description = 'Changed email.';
+        $log->description = 'Updated profile.';
         $log->ip = $request->ip();
         $log->save();
 
-        return response()->json([
-            'status'  => 'success',
-            'message' => 'Successfully updated.'
-        ]);
+        return response()->json($res);
     }
 
     public function postChangePassword(Request $request) {

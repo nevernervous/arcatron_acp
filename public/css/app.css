@@ -168,3 +168,35 @@ body {
     -webkit-animation-timing-function:ease-in-out;
     -webkit-animation-direction: alternate;
 }
+
+.kv-avatar .krajee-default.file-preview-frame,.kv-avatar .krajee-default.file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar {
+    display: inline-block;
+    width: 100%;
+}
+.kv-avatar .file-preview  {
+    float: left;
+    /*width: 250px;*/
+    text-align: center;
+}
+.kv-avatar .file-input {
+    display: inline-block;
+    /*width: 100%;*/
+}
+.kv-reqd {
+    color: red;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+.kv-avatar .btn-file{
+    margin-left: 10px;
+    position: absolute;
+    bottom: 15px;
+}

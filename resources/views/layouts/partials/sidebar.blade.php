@@ -5,7 +5,7 @@
     <div class="sidebar-user">
       <div class="category-content">
         <div class="media">
-          <a href="{{ route('showProfile') }}" class="media-left"><img src="{{ asset('images/user.png') }}" class="img-circle img-sm" alt=""></a>
+          <a href="{{ route('showProfile') }}" class="media-left"><img src="{{ asset(Auth::user()->avatar) }}" class="img-circle img-sm" alt=""></a>
           <div class="media-body">
             <span class="media-heading text-semibold">{{ Auth::user()->name }}</span>
             <div class="text-size-mini text-muted">
