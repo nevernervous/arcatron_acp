@@ -108,5 +108,6 @@
 @section('script')
   <script type="text/javascript" src="{{ asset('assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
   {{--<script type="text/javascript" src="{{ asset('assets/js/pages/form_select2.js') }}"></script>--}}
+  <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/date-euro.js"></script>
   <script type="text/javascript" src="{{ asset('js/pages/search.js') }}"></script>
 @endsection

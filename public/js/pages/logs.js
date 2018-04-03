@@ -34,7 +34,15 @@ $(function() {
 
 
     // Basic datatable
-    $('#datatable-logs').DataTable();
+    $('#datatable-logs').DataTable({
+        order: [],
+        columnDefs: [
+            {
+                type: "date-euro",
+                targets: 5,
+            }
+        ]
+    });
 
     // External table additions
     // ------------------------------

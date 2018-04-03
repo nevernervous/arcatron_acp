@@ -39,7 +39,13 @@ $(function() {
             } else if( data[6] == 'PACKET LOSS' ) {
                 $(row).addClass('color-yellow');
             }
-        }
+        },
+        columnDefs: [
+            {
+                type: "date-euro",
+                targets: 5,
+            }
+        ]
     });
 
     // External table additions

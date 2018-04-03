@@ -21,9 +21,9 @@ class LogsController extends Controller
     public function showLogs(Request $request) {
         $user = Auth::user();
         if($user->hasRole('admin'))
-            $logs = Logs::with('user')->oldest()->get();
+            $logs = Logs::with('user')->latest()->get();
         else
-            $logs = Logs::with('user')->where('user_id', '=', $user->id)->oldest()->get();
+            $logs = Logs::with('user')->where('user_id', '=', $user->id)->latest()->get();
 
         return view('logs.index', [
             'logs' => $logs
